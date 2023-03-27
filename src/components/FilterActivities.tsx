@@ -23,7 +23,7 @@ const FilterActivities = () => {
       <Flex>
         <Input placeholder="location..." />
         <IconButton
-          // onClick={getLocation}
+          onClick={getLocation}
           icon={<SearchIcon />}
           aria-label={"search activites by location"}
         />
