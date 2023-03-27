@@ -1,17 +1,18 @@
-import { SearchIcon } from "@chakra-ui/icons";
-import { Box, Flex, Heading, IconButton, Input } from "@chakra-ui/react";
+import { SearchIcon } from '@chakra-ui/icons';
+import { Box, Flex, Heading, IconButton, Input } from '@chakra-ui/react';
+import axios from 'axios';
 
 const FilterActivities = () => {
-  // const getLocation = async () => {
-  //   const options = { method: "GET", headers: { accept: "application/json" }};
-  //   fetch(
-  //     "https://api.content.tripadvisor.com/api/v1/location/search?key=7C23E6E7D20B4DCF96588CBA6859738D&searchQuery=siracusa&language=en",
-  //     options
-  //   )
-  //     .then((response) => response.json())
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.error(err));
-  // };
+  const getLocation = async () => {
+    try {
+      const response = await axios.get(
+        'https://api.content.tripadvisor.com/api/v1/location/search?key=7C23E6E7D20B4DCF96588CBA6859738D&searchQuery=london&language=en'
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Box maxW="md" m={{ sm: 5, md: "auto" }}>
