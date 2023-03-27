@@ -11,6 +11,8 @@ function App() {
   const [activities, setActivities] = useState([]);
   const [location, setLocation] = useState({});
 
+  
+
   return (
     <TripContext.Provider value={{ activities, setActivities, location, setLocation }}>
       <Navbar />
