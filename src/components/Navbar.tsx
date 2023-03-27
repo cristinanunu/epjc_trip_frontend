@@ -20,7 +20,7 @@ const Navbar = () => {
             About
           </Link>
           <Link className="nav-link" to="/login">
-            Login
+            Login/Sign up
           </Link>
         </Flex>
 
@@ -45,7 +45,7 @@ const Navbar = () => {
               About
             </Link>
             <Link className="nav-link" to="/login">
-              Login
+              Login/Sign up
             </Link>
           </DrawerBody>
         </DrawerContent>
