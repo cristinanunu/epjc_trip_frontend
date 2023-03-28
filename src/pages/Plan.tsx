@@ -1,4 +1,4 @@
-import { Card, CardBody, Stack, Heading, Divider, CardFooter, ButtonGroup, Button, Text, Image } from "@chakra-ui/react";
+import { Card, CardBody, Stack, Heading, Divider, CardFooter, Text, Image } from "@chakra-ui/react";
 import moment from "moment";
 import { useContext } from "react";
 import { TripContext } from "../context/Context";
