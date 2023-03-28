@@ -23,6 +23,7 @@ function App() {
   const [plans, setPlans] = useState<SavedPlan[]>([]);
   const [location, setLocation] = useState({});
   const [recommendedActivities, setRecommendedActivities] = useState([]);
+  const [user, setUser] = useState({});
 
   const client = axios.create({
     baseURL: 'https://epjctripapi.azurewebsites.net/api',
@@ -46,17 +47,17 @@ function App() {
     }
   }
 
-  const savePlan =async (plan: NewPlan) => {
+  const savePlan = async (plan: NewPlan) => {
     await postPlan(plan);
-  }
+  };
 
   async function postPlan(plan: NewPlan) {
     try {
-      const response = await client.post('/Plans', plan)
+      const response = await client.post('/Plans', plan);
       const planData = response.data;
-      console.log('response from post', response)
-      console.log('this is plan data',planData);
-      setPlans([...plans, planData])
+      console.log('response from post', response);
+      console.log('this is plan data', planData);
+      setPlans([...plans, planData]);
     } catch (error) {
       throw new Error('The request to add a new developer was not successful. Try again.');
     }
@@ -68,7 +69,9 @@ function App() {
   }, []);
 
   return (
-    <TripContext.Provider value={{ activities, setActivities, plans, location, setLocation, savePlan, recommendedActivities, setRecommendedActivities }}>
+    <TripContext.Provider
+      value={{ activities, setActivities, plans, location, setLocation, savePlan, recommendedActivities, setRecommendedActivities, user, setUser }}
+    >
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
