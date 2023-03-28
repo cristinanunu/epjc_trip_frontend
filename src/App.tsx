@@ -6,11 +6,21 @@ import { TripContext } from './context/Context';
 import About from './pages/About';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Plan from './pages/Plan';
+import Plan, { SavedPlan } from './pages/Plan';
+
+export interface NewPlan {
+  name: string;
+  departure: string;
+  destionation: string;
+  startDate: string;
+  endDate: string;
+  participants: number;
+  cost: number;
+}
 
 function App() {
   const [activities, setActivities] = useState([]);
-  const [plans, setPlans] = useState([]);
+  const [plans, setPlans] = useState<SavedPlan[]>([]);
   const [location, setLocation] = useState({});
   const [recommendedActivities, setRecommendedActivities] = useState([]);
 
@@ -35,6 +45,22 @@ function App() {
       console.log(error);
     }
   }
+
+  const savePlan =async (plan: NewPlan) => {
+    await postPlan(plan);
+  }
+
+  async function postPlan(plan: NewPlan) {
+    try {
+      const response = await client.post('/Plans', plan)
+      const planData = response.data;
+      console.log('response from post', response)
+      console.log('this is plan data',planData);
+      setPlans([...plans, planData])
+    } catch (error) {
+      throw new Error('The request to add a new developer was not successful. Try again.');
+    }
+  }
   useEffect(() => {
     getPlan();
     getActivities();
@@ -42,7 +68,7 @@ function App() {
   }, [])
 
   return (
-    <TripContext.Provider value={{ activities, setActivities, plans, location, setLocation, recommendedActivities, setRecommendedActivities }}>
+    <TripContext.Provider value={{ activities, setActivities, plans, location, setLocation, savePlan, recommendedActivities, setRecommendedActivities }}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
