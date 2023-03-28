@@ -15,11 +15,12 @@ import {
 import { Link } from 'react-router-dom';
 import { Image } from '@chakra-ui/react';
 import logo from '../assets/logo-green.png';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { TripContext } from '../context/Context';
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('email') !== null);
+  const { loggedIn, setLoggedIn }: any = useContext(TripContext);
 
   const logout = () => {
     localStorage.clear();
