@@ -24,25 +24,21 @@ const Navbar = () => {
         p={"5"}
         position={"relative"}
         mb={"3"}
-        border={"1px"}
-        borderColor={"black"}
-    
+        mt={"3"}
+        
         padding={'1rem'}
       >
-        <Heading position={"absolute"} left={{ base: "40%", md: "45%" }} top={'1'}border={"1px"}
-        borderColor={"black"}>
+        <Heading position={"absolute"} left={{ base: "40%", md: "45%" }} top={'1'}
+        >
           <Image
             src={logo}
             alt="logo"
             boxSize="4rem"
-            border={"1px"}
-            borderColor={"black"}
           />
         </Heading>
         <Flex
           display={{ base: "none", md: "flex" }}
-          border={"1px"}
-          borderColor={"black"}
+          padding={'0.5rem'}
         >
           <Link className="nav-link" to="/">
             Home
