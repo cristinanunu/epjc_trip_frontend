@@ -37,6 +37,7 @@ function App() {
   useEffect(() => {
     getPlan();
     getActivities();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
