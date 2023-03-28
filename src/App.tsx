@@ -26,8 +26,8 @@ function App() {
 
   const client = axios.create({
     baseURL: 'https://epjctripapi.azurewebsites.net/api',
-  })
-  
+  });
+
   async function getPlan() {
     try {
       const response = await client.get('/Plans');
@@ -36,7 +36,7 @@ function App() {
       console.log(error);
     }
   }
-  
+
   async function getActivities() {
     try {
       const response = await client.get('/Activities');
@@ -64,8 +64,8 @@ function App() {
   useEffect(() => {
     getPlan();
     getActivities();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <TripContext.Provider value={{ activities, setActivities, plans, location, setLocation, savePlan, recommendedActivities, setRecommendedActivities }}>
