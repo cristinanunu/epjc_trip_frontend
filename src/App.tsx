@@ -22,6 +22,7 @@ function App() {
   const [activities, setActivities] = useState([]);
   const [plans, setPlans] = useState<SavedPlan[]>([]);
   const [location, setLocation] = useState({});
+  const [recommendedActivities, setRecommendedActivities] = useState([]);
 
   const client = axios.create({
     baseURL: 'https://epjctripapi.azurewebsites.net/api',
@@ -67,7 +68,7 @@ function App() {
   }, [])
 
   return (
-    <TripContext.Provider value={{ activities, setActivities, plans, location, setLocation, savePlan }}>
+    <TripContext.Provider value={{ activities, setActivities, plans, location, setLocation, savePlan, recommendedActivities, setRecommendedActivities }}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
