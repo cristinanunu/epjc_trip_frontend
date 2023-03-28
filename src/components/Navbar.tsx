@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { Image, Img } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 import logo from "../assets/logo-green.png";
 
 const Navbar = () => {
