@@ -1,9 +1,10 @@
-import { Card, CardBody, Stack, Heading, Divider, CardFooter, Text, Image } from "@chakra-ui/react";
+import { Card, CardBody, Stack, Heading, Divider, CardFooter, Text, Image, Container } from "@chakra-ui/react";
 import moment from "moment";
 import { useContext } from "react";
+import PlanForm from "../components/PlanForm";
 import { TripContext } from "../context/Context";
 
-interface SavedPlan {
+export interface SavedPlan {
   activities: []
   cost: number;
   departure: string;
@@ -19,9 +20,9 @@ const Plan = () => {
   const { plans, activities }: any = useContext(TripContext);
   
   return (
-    <>
+    <Container>
       {plans.map((plan: SavedPlan) => (
-        <section>
+        <section key={plan.id}>
           <h2>{plan.name}</h2>
           <p>Departure: {plan.departure}</p>
           <p>Destination: {plan.destionation}</p>
@@ -64,7 +65,8 @@ const Plan = () => {
           </div>
         </section>
       ))}
-    </>
+      <PlanForm />
+    </Container>
   );
 };
 
