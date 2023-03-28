@@ -78,9 +78,6 @@ const Navbar = () => {
             <Link className="nav-link" to="/about">
               About
             </Link>
-            <Link className="nav-link" to="/login">
-              Login/Sign up
-            </Link>
             {loggedIn ? (
               <Text>Logged in as {localStorage.getItem('email')}</Text>
             ) : (
