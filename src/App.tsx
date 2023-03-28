@@ -62,6 +62,15 @@ function App() {
       throw new Error('The request to add a new developer was not successful. Try again.');
     }
   }
+  const deletePlan = (id: number) => {
+    deletePlanById(id);
+    const filterPlans = plans.filter(plan => plan.id !== id);
+    setPlans(filterPlans);
+  }
+
+  async function deletePlanById(id: number) {
+    await client.delete(`/Plans/${id}`);
+  }
   useEffect(() => {
     getPlan();
     getActivities();
@@ -77,6 +86,7 @@ function App() {
         location,
         setLocation,
         savePlan,
+        deletePlan,
         recommendedActivities,
         setRecommendedActivities,
         loggedIn,
