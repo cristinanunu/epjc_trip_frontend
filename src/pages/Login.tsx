@@ -11,12 +11,12 @@ const Login = () => {
       {hasUser ? <LoginForm /> : <SignupForm />}
       {hasUser ? (
         <Flex mt={5} justifyContent={'center'} alignItems="center">
-          <Text mr={5}>Don't have a user?</Text>
+          <Text mr={5}>Are you not EPjC yet?</Text>
           <Button onClick={() => setHasUser(false)}>Sign up</Button>
         </Flex>
       ) : (
         <Flex mt={5} justifyContent={'center'} alignItems="center">
-          <Text mr={5}>Already have a user?</Text>
+          <Text mr={5}>Are you EPjC?</Text>
           <Button onClick={() => setHasUser(true)}>Log in</Button>
         </Flex>
       )}

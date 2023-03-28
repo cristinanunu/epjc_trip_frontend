@@ -1,5 +1,5 @@
 .slider{
-    margin-bottom: 2rem;
+    margin: 2rem;
     display: flex;
 }
 
@@ -13,7 +13,17 @@
     height: 200px;
 }
 
-@media (min-width: 768px) {
+
+ @media (min-width: 768px) {
+
+    .carousel{
+        width: 350px;
+        height: 250px;
+    }
+   
+  }
+
+  @media (min-width: 1024px) {
 
     .carousel{
         width: 500px;

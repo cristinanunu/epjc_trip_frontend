@@ -20,20 +20,20 @@ const Navbar = () => {
   return (
     <header>
       <Flex
-        justifyContent={{ base: "start", md: "space-between" }}
+        justifyContent={ "space-between" }
         p={"5"}
         position={"relative"}
-        mb={"3"}
-        mt={"3"}
-        
+        m={'3'}
+        alignItems={'center'}
         padding={'1rem'}
       >
-        <Heading position={"absolute"} left={{ base: "40%", md: "45%" }} top={'1'}
+        <Heading top={'1'}
         >
           <Image
             src={logo}
             alt="logo"
             boxSize="4rem"
+            ml={1.5}
           />
         </Heading>
         <Flex
@@ -70,7 +70,11 @@ const Navbar = () => {
             justifyContent="space-between"
             borderBottomWidth="1px"
           >
-            <Heading>LOGO</Heading>
+            <Heading><Image
+            src={logo}
+            alt="logo"
+            boxSize="4rem"
+          /></Heading>
             <IconButton
               onClick={onClose}
               icon={<CloseIcon />}
