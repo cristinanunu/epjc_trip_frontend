@@ -1,6 +1,7 @@
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
   Drawer,
+  Text,
   DrawerBody,
   DrawerContent,
   DrawerHeader,
@@ -9,13 +10,22 @@ import {
   Heading,
   IconButton,
   useDisclosure,
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { Image } from "@chakra-ui/react";
-import logo from "../assets/logo-green.png";
+  Button,
+} from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import { Image } from '@chakra-ui/react';
+import logo from '../assets/logo-green.png';
+import { useContext } from 'react';
+import { TripContext } from '../context/Context';
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { loggedIn, setLoggedIn }: any = useContext(TripContext);
+
+  const logout = () => {
+    localStorage.clear();
+    setLoggedIn(false);
+  };
 
   return (
     <header>
@@ -36,10 +46,7 @@ const Navbar = () => {
             ml={1.5}
           />
         </Heading>
-        <Flex
-          display={{ base: "none", md: "flex" }}
-          padding={'0.5rem'}
-        >
+        <Flex alignItems={'baseline'} display={{ base: 'none', md: 'flex' }} padding={'0.5rem'}>
           <Link className="nav-link" to="/">
             Home
           </Link>
@@ -49,17 +56,22 @@ const Navbar = () => {
           <Link className="nav-link" to="/about">
             About
           </Link>
-          <Link className="nav-link" to="/login">
-            Login/Sign up
-          </Link>
+          {loggedIn ? (
+            <Text>Logged in as {localStorage.getItem('email')}</Text>
+          ) : (
+            <Link className="nav-link" to="/login">
+              Login/Sign up
+            </Link>
+          )}
+
+          {loggedIn && (
+            <Button onClick={logout} ml={5}>
+              Log out
+            </Button>
+          )}
         </Flex>
 
-        <IconButton
-          display={{ md: "none" }}
-          onClick={onOpen}
-          icon={<HamburgerIcon />}
-          aria-label={"Menu button"}
-        />
+        <IconButton display={{ md: 'none' }} onClick={onOpen} icon={<HamburgerIcon />} aria-label={'Menu button'} />
       </Flex>
 
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
@@ -91,9 +103,19 @@ const Navbar = () => {
             <Link className="nav-link" to="/about">
               About
             </Link>
-            <Link className="nav-link" to="/login">
-              Login/Sign up
-            </Link>
+            {loggedIn ? (
+              <Text>Logged in as {localStorage.getItem('email')}</Text>
+            ) : (
+              <Link className="nav-link" to="/login">
+                Login/Sign up
+              </Link>
+            )}
+
+            {loggedIn && (
+              <Button onClick={logout} ml={5}>
+                Log out
+              </Button>
+            )}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

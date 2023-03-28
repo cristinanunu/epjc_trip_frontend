@@ -1,9 +1,10 @@
-import { Card, CardBody, Stack, Heading, Divider, CardFooter, Text, Image } from "@chakra-ui/react";
+import { Card, CardBody, Stack, Heading, Divider, CardFooter, Text, Image, Container, Button } from "@chakra-ui/react";
 import moment from "moment";
 import { useContext } from "react";
+import PlanForm from "../components/PlanForm";
 import { TripContext } from "../context/Context";
 
-interface SavedPlan {
+export interface SavedPlan {
   activities: []
   cost: number;
   departure: string;
@@ -16,12 +17,15 @@ interface SavedPlan {
 }
 
 const Plan = () => {
-  const { plans, activities }: any = useContext(TripContext);
+  const { plans,deletePlan, activities }: any = useContext(TripContext);
   
+  const handleDelete = (id: number) => {
+    deletePlan(id);
+  }
   return (
-    <>
+    <Container>
       {plans.map((plan: SavedPlan) => (
-        <section>
+        <section key={plan.id}>
           <h2>{plan.name}</h2>
           <p>Departure: {plan.departure}</p>
           <p>Destination: {plan.destionation}</p>
@@ -29,6 +33,7 @@ const Plan = () => {
           <p>End Date: {moment(plan.endDate).format('MMM Do YY')}</p>
           <p>Participants: {plan.participants}</p>
           <p>Cost of the trip: € {plan.cost}</p>
+          <Button onClick={() => handleDelete(plan.id)}>Delete</Button>
           <div>
             {activities.filter((activity: any) => activity.planId === plan.id).map(((planActivity: any) =>
               <Card maxW='sm' key={planActivity.id}>
@@ -64,7 +69,8 @@ const Plan = () => {
           </div>
         </section>
       ))}
-    </>
+      <PlanForm />
+    </Container>
   );
 };
 
