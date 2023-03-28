@@ -29,9 +29,22 @@ const Navbar = () => {
 
   return (
     <header>
-      <Flex justifyContent={{ base: 'start', md: 'space-between' }} p={'5'} position={'relative'} mb={'3'} mt={'3'} padding={'1rem'}>
-        <Heading position={'absolute'} left={{ base: '40%', md: '45%' }} top={'1'}>
-          <Image src={logo} alt="logo" boxSize="4rem" />
+      <Flex
+        justifyContent={ "space-between" }
+        p={"5"}
+        position={"relative"}
+        m={'3'}
+        alignItems={'center'}
+        padding={'1rem'}
+      >
+        <Heading top={'1'}
+        >
+          <Image
+            src={logo}
+            alt="logo"
+            boxSize="4rem"
+            ml={1.5}
+          />
         </Heading>
         <Flex alignItems={'baseline'} display={{ base: 'none', md: 'flex' }} padding={'0.5rem'}>
           <Link className="nav-link" to="/">
@@ -62,11 +75,23 @@ const Navbar = () => {
       </Flex>
 
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay display={{ sm: 'flex', md: 'none' }} />
-        <DrawerContent display={{ sm: 'flex', md: 'none' }}>
-          <DrawerHeader display="flex" justifyContent="space-between" borderBottomWidth="1px">
-            <Heading>LOGO</Heading>
-            <IconButton onClick={onClose} icon={<CloseIcon />} aria-label={'Close button'} />
+        <DrawerOverlay display={{ sm: "flex", md: "none" }} />
+        <DrawerContent display={{ sm: "flex", md: "none" }}>
+          <DrawerHeader
+            display="flex"
+            justifyContent="space-between"
+            borderBottomWidth="1px"
+          >
+            <Heading><Image
+            src={logo}
+            alt="logo"
+            boxSize="4rem"
+          /></Heading>
+            <IconButton
+              onClick={onClose}
+              icon={<CloseIcon />}
+              aria-label={"Close button"}
+            />
           </DrawerHeader>
           <DrawerBody display="flex" flexDirection="column">
             <Link className="nav-link" to="/">
