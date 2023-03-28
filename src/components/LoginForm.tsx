@@ -3,8 +3,12 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { loginUrl } from '../constants/api';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { TripContext } from '../context/Context';
 
 const LoginForm = () => {
+  const { setLoggedIn }: any = useContext(TripContext);
+
   const {
     register,
     handleSubmit,
@@ -27,6 +31,7 @@ const LoginForm = () => {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('name', response.data.name);
       localStorage.setItem('email', response.data.email);
+      setLoggedIn(true);
       navigate('/myplan');
       reset();
     } catch (error) {
