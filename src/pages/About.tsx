@@ -1,39 +1,74 @@
-import { Text, Box } from "@chakra-ui/react";
+import { Text, Box, Divider, Grid, GridItem, Heading } from "@chakra-ui/react";
 
 const About = () => {
   return (
-    <div>
-      <Box m={"2em"}
-        backgroundColor='green'
-        width='300px'
-        border='1px'
-        borderColor='black'>
-        <Text fontSize="4xl" mb={"1rem"}>
+    <main>
+        <Heading fontSize="4xl" m={{base:"2rem 1rem", lg:"2rem 5rem", xl:'2rem 12rem'}} >
           About us
-        </Text>
-        {/* <Divider
+        </Heading>
+        <Divider
           orientation="horizontal"
-          borderWidth={"5px"}
-          color={"black"}
+          borderWidth={"1px"}
+          color='epjc.peach'
           mb={"1rem"}
-        /> */}
+        />
+        <Grid templateColumns={'repeat(4,1fr)'} p='4px' gridGap={3} m={{base:'1rem', lg:'1rem 5rem', xl:'2rem 12rem'}}>
+        <GridItem colSpan={{base: 4, md: 1}}>
         <Box
-          width='290px'
-          border='10px'
-          borderColor='red'
-          mt='1rem'
-          backgroundColor='red'
-          mr='1rem'
-        >
-          <Text fontSize="2xl">Who we are</Text>
-          <Text >
+          borderColor='black'
+          height={{base :'10vh', md: '30vh'}}
+          >
+          <Heading fontSize={{base:"2xl", md: '3xl'}}backgroundColor={'transparent'}>Who we are</Heading>
+        </Box>
+        </GridItem>
+        <GridItem colSpan={{base: 4, md: 3}}>
+        <Box>
+          <Text fontSize={{base:"xl", md: '2xl'}} >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
             repellat officia sunt sed delectus soluta ipsam qui rem provident
             molestiae. Sint laborum eaque optio quas reiciendis, sed earum
             numquam nemo?
           </Text>
         </Box>
-        <Box border={"100%"} borderColor={"black"} mt={"2rem"} bg={"#f6f6f6"}>
+        </GridItem>
+        <GridItem colSpan={{base: 4, md: 1}}>
+        <Box
+          borderColor='black'
+          height={{base :'10vh', md: '30vh'}}
+          >
+          <Heading fontSize={{base:"2xl", md: '3xl'}} backgroundColor={'transparent'}>Why EPjC travel</Heading>
+        </Box>
+        </GridItem>
+        <GridItem colSpan={{base: 4, md: 3}}>
+        <Box>
+          <Text fontSize={{base:"xl", md: '2xl'}} >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+            repellat officia sunt sed delectus soluta ipsam qui rem provident
+            molestiae. Sint laborum eaque optio quas reiciendis, sed earum
+            numquam nemo?
+          </Text>
+        </Box>
+        </GridItem>
+        <GridItem colSpan={{base: 4, md: 1}}>
+        <Box
+          borderColor='black'
+          height={{base :'10vh', md: '30vh'}}
+          >
+          <Heading fontSize={{base:"2xl", md: '3xl'}}  backgroundColor={'transparent'}>Contact us</Heading>
+        </Box>
+        </GridItem>
+        <GridItem colSpan={{base: 4, md: 3}}>
+        <Box>
+          <Text fontSize={{base:"xl", md: '2xl'}} >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+            repellat officia sunt sed delectus soluta ipsam qui rem provident
+            molestiae. Sint laborum eaque optio quas reiciendis, sed earum
+            numquam nemo?
+          </Text>
+        </Box>
+        </GridItem>
+        
+        {/* <Box border={"100%"} borderColor={"black"} mt={"2rem"} bg={"#f6f6f6"}>
           <Text fontSize="2xl">Our background</Text>
           <Text>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
@@ -50,8 +85,9 @@ const About = () => {
             molestiae. Sint laborum eaque optio quas reiciendis, sed earum
             numquam nemo?
           </Text>
-        </Box>
-      </Box>
+        </Box> */}
+          </Grid>
+      
 
       {/* <Grid
   h='200px'
@@ -64,7 +100,7 @@ const About = () => {
   <GridItem colSpan={2} bg='blue' />
   <GridItem colSpan={4} bg='blue' />
 </Grid> */}
-    </div>
+    </main>
   );
 };
 

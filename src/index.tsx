@@ -5,12 +5,28 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import "./global.css"
 
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+
+const colors ={
+  epjc : {
+    blue: '#0075c3',
+    darkgreen:'#11663d',
+    green: '#00bf63',
+    peach: '#ffbd59',
+    yellow: '#ffde59'
+  }
+}
+
+const fonts ={
+  body: 'montserrat',
+  heading: 'montserrat'
+}
+const theme = extendTheme({colors, fonts})
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
