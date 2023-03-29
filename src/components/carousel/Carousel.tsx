@@ -10,29 +10,34 @@ import paris from "../../assets/paris.jpg";
 import rome from "../../assets/rome.jpg";
 import sydney from "../../assets/sydney.jpg";
 import venice from "../../assets/venice.jpg";
-
 const Carousel = () => {
   const settings = {
-    dots: true,
     infinite: true,
     autoplay: true,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     ease: 'linear',
     speed: 500,
     transition: 'slide',
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 400,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 1,
           slidesToScroll: 1
         }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
           slidesToScroll: 1
         }
       },
@@ -64,5 +69,4 @@ const Carousel = () => {
     </Slider>
   );
 };
-
 export default Carousel;
