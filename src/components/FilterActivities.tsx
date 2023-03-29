@@ -5,10 +5,12 @@ import { useContext, useState } from 'react';
 import { epjcAttractions } from '../constants/api';
 import { TripContext } from '../context/Context';
 import travel from '../assets/travel.jpg';
+
 const FilterActivities = () => {
   const [inputValue, setInputValue] = useState('');
   const { setRecommendedActivities }: any = useContext(TripContext);
-  const getRecommendedActivities = async (e: any) => {
+
+  const getRecommendedActivities = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
       const response = await axios.get(`${epjcAttractions}${inputValue}`);
@@ -17,6 +19,7 @@ const FilterActivities = () => {
       console.log(error);
     }
   };
+
   return (
     <Box p={10} maxW="2xl" h="xs" m={'auto'} bgImage={travel} bgSize="cover" bgRepeat="no-repeat" borderRadius={'1rem'}>
       {/* <Heading
@@ -30,7 +33,7 @@ const FilterActivities = () => {
       </Heading> */}
       <form onSubmit={getRecommendedActivities}>
         <Flex>
-          <Input value={inputValue} onChange={(e: any) => setInputValue(e.target.value)} placeholder="Where are we going?" />
+          <Input value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Where are we going?" />
           <IconButton type="submit" icon={<SearchIcon />} aria-label={'search activites by location'} />
         </Flex>
       </form>

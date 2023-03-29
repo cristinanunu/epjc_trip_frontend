@@ -22,6 +22,7 @@ const Plan = () => {
   const handleDelete = (id: number) => {
     deletePlan(id);
   }
+
   return (
     <Container>
       {plans.map((plan: SavedPlan) => (

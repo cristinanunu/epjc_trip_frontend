@@ -6,7 +6,7 @@ import { registerUrl } from '../constants/api';
 
 const SignupForm = () => {
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     register,

@@ -1,17 +1,5 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
-import {
-  Drawer,
-  Text,
-  DrawerBody,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-  Flex,
-  Heading,
-  IconButton,
-  useDisclosure,
-  Button,
-} from '@chakra-ui/react';
+import { Drawer, Text, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, IconButton, useDisclosure, Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { Image } from '@chakra-ui/react';
 import logo from '../assets/logo-green.png';
@@ -27,9 +15,8 @@ const Navbar = () => {
   return (
     <header>
       <Flex justifyContent={'space-between'} p={'8'} alignItems={'center'} bgColor="green.200">
-        <Heading top={'1'}>
-          <Image src={logo} alt="logo" boxSize="4rem" ml={2} />
-        </Heading>
+        <Image src={logo} alt="logo" boxSize="4rem" ml={2} />
+
         <Flex display={{ base: 'none', md: 'flex' }} padding={'0.5rem'}>
           <Link className="nav-link" to="/">
             Home
@@ -40,6 +27,7 @@ const Navbar = () => {
           <Link className="nav-link" to="/about">
             About
           </Link>
+
           {loggedIn ? (
             <Text>Logged in as {localStorage.getItem('email')}</Text>
           ) : (
@@ -47,12 +35,14 @@ const Navbar = () => {
               Login/Sign up
             </Link>
           )}
+
           {loggedIn && (
             <Button onClick={logout} ml={5}>
               Log out
             </Button>
           )}
         </Flex>
+
         <IconButton
           display={{ md: 'none' }}
           onClick={onOpen}
@@ -65,9 +55,7 @@ const Navbar = () => {
         <DrawerOverlay display={{ sm: 'flex', md: 'none' }} />
         <DrawerContent display={{ sm: 'flex', md: 'none' }}>
           <DrawerHeader display="flex" justifyContent="space-between" borderBottomWidth="1px">
-            <Heading>
-              <Image src={logo} alt="logo" boxSize="5rem" />
-            </Heading>
+            <Image src={logo} alt="logo" boxSize="5rem" />
             <IconButton onClick={onClose} icon={<CloseIcon />} aria-label={'Close button'} />
           </DrawerHeader>
           <DrawerBody display="flex" flexDirection="column">
