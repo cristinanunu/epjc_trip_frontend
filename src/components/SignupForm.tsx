@@ -52,7 +52,15 @@ const SignupForm = () => {
             {error}
           </Text>
         )}
-        <Button type="submit">Sign up</Button>
+        <Button type="submit"  
+         _hover={{ bg: "white", color: "epjc.darkgreen" }}
+         background={"epjc.darkgreen"}
+         border={"1px"}
+         color={"white"}
+         borderColor={"epjc.darkgreen"}
+        
+        
+        >Sign up</Button>
         {success && (
           <Text mt={5} color={'green.500'}>
             User created! You can now log in
