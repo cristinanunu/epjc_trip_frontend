@@ -11,7 +11,7 @@ const About = () => {
       >
         About us
       </Heading>
-      <Developers/>
+      <Developers />
       <Divider
         orientation="horizontal"
         borderWidth={"1px"}

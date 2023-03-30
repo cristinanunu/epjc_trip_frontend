@@ -12,6 +12,7 @@ import sydney from "../../assets/sydney.jpg";
 import venice from "../../assets/venice.jpg";
 const Carousel = () => {
   const settings = {
+    arrows:false,
     infinite: true,
     autoplay: true,
     slidesToShow: 4,

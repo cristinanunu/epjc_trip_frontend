@@ -15,9 +15,9 @@ const Navbar = () => {
   };
   return (
     <header>
-      <Flex justifyContent={'space-between'} p={'8'} alignItems={'center'} bgColor="epjc.darkgreen">
-        <Box top={'1'}>
-          <Image src={logowhite} alt="logo" boxSize="4rem" ml={2} />
+      <Flex justifyContent={'space-between'} p={'8'} alignItems={'center'} bgColor="epjc.darkgreen" w={'100%'}>
+        <Box  borderRadius={'10px'}>
+          <Image src={logowhite} alt="logo" boxSize="4rem"   borderRadius={'10px'}/>
         </Box>
         <Flex display={{ base: 'none', md: 'flex' }} padding={'0.5rem'} bgColor='transparent' color='white' fontSize={'1.7rem'} fontWeight={'bold'}>
           <Link className="nav-link" to="/">
@@ -31,7 +31,7 @@ const Navbar = () => {
           </Link>
 
           {loggedIn ? (
-            <Text>Logged in as {localStorage.getItem('email')}</Text>
+            <Text backgroundColor={'epjc.darkgreen'}>Welcome {localStorage.getItem('email')} !</Text>
           ) : (
             <Link className="nav-link" to="/login">
               Login/Sign up
@@ -39,7 +39,7 @@ const Navbar = () => {
           )}
 
           {loggedIn && (
-            <Button onClick={logout} ml={5}>
+            <Button background={'epjc.yellow'} color={'epjc.darkgreen'}onClick={logout} ml={5}>
               Log out
             </Button>
           )}
