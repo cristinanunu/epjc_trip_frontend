@@ -36,11 +36,12 @@ const FilterActivities = () => {
         Where are we going?
       </Heading>
       <form onSubmit={getRecommendedActivities} className={Styles.locationForm}>
-        <Flex >
+        <Flex borderRadius={'15px'} >
           <Input value={inputValue} onChange={(e: any) => setInputValue(e.target.value)} placeholder="Type your destination (e.g. Paris, ecc.)" 
           fontSize={{ base: "0.8rem", md: "1.6rem" }}
-          border={'solid 3px black'}  />
-          <IconButton type="submit" icon={<SearchIcon />} aria-label={'search activites by location'} border={'solid 3px black'}  />
+          backgroundColor={'white'}
+           />
+          <IconButton  type="submit" icon={<SearchIcon />} aria-label={'search activites by location'}  color={'black'}  variant="customIconButton" />
         </Flex>
       </form>
     </Box>

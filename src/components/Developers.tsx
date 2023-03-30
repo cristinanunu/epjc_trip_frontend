@@ -7,17 +7,18 @@ const Developers = () => {
   return (
     <Flex
       justifyContent={"space-around"}
+      m={'1rem'}
       p={"1rem"}
       alignItems={"center"}
-      gap={{ base: "2rem", md: "3rem", lg: '3rem' }}
+      gap={{ base: "1rem", md: "1rem",lg: '1rem'}}
     >
-      <Box _hover={{ border: "solid 5px", borderColor:'epjc.darkgreen', cursor:'pointer', opacity:'0.8' }}>
-        <Image src={Joakim} alt={"Joakim"} />
+      <Box width={'25%'} _hover={{ border: "solid 5px", borderColor:'epjc.darkgreen', cursor:'pointer', opacity:'0.8' }}>
+        <Image src={Joakim} alt={"Joakim"}  />
       </Box>
-      <Box _hover={{ border: "solid 5px", borderColor:'epjc.darkgreen', cursor:'pointer', opacity:'0.8' }}>
+      <Box width={'25%'}_hover={{ border: "solid 5px", borderColor:'epjc.darkgreen', cursor:'pointer', opacity:'0.8' }}>
         <Image src={Cristina} alt={"Cristina"} />
       </Box>
-      <Box _hover={{ border: "solid 5px", borderColor:'epjc.darkgreen', cursor:'pointer', opacity:'0.8' }}>
+      <Box width={'25%'}_hover={{ border: "solid 5px", borderColor:'epjc.darkgreen', cursor:'pointer', opacity:'0.8' }}>
         <Image src={Enrico} alt={"Enrico"} />
       </Box>
     </Flex>

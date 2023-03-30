@@ -1,4 +1,4 @@
-import { Card, CardBody, Stack, Heading, Divider, CardFooter, Text, Image, Container, Button, useDisclosure } from "@chakra-ui/react";
+import {SimpleGrid, Card, CardBody, Stack, Heading, Divider, CardFooter, Text, Image, Container, Button, useDisclosure } from "@chakra-ui/react";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { NewPlan } from "../App";
@@ -58,7 +58,7 @@ const Plan = () => {
 
   const handleDelete = (id: number) => {
     deletePlan(id);
-  }
+  };
 
   const handleOnClick = (plan: SavedPlan) => {
     setSelectedPlan(plan);
@@ -67,7 +67,21 @@ const Plan = () => {
 
   return (
     <Container>
+     <Heading
+        fontSize="4xl"
+        m={{ base: "2rem 1rem", lg: "2rem 5rem", xl: "2rem 12rem" }}
+        textAlign={"center"}
+      >
+        My Plan
+      </Heading>
+      <Divider
+        orientation="horizontal"
+        borderWidth={"1px"}
+        m={"1rem auto"}
+        w="3xl"
+      />
       <Button onClick={onOpen}>Create plan</Button>
+      <SimpleGrid columns={{ base: 1, md: 2}} spacingX={'10rem'}  >
       {plans.map((plan: SavedPlan) => (
         <section key={plan.id}>
           <h2>{plan.name}</h2>
@@ -77,7 +91,15 @@ const Plan = () => {
           <p>End Date: {moment(plan.endDate).format('MMM Do YY')}</p>
           <p>Participants: {plan.participants}</p>
           <p>Cost of the trip: € {plan.cost}</p>
-          <Button onClick={() => handleDelete(plan.id)}>Delete</Button>
+          <Button
+            mt={3} mb={6}
+              backgroundColor={"epjc.darkgreen"}
+              color={"white"}
+              _hover={{backgroundColor: 'white', color: 'epjc.darkgreen', border: 'solid 2px epjc.darkgreen'}}
+              onClick={() => handleDelete(plan.id)}
+            >
+              Delete
+            </Button>
           <Button onClick={() => handleOnClick(plan)}>Update</Button>
           <div>
             {plan.activities?.filter((activity: any) => activity.planId === plan.id).map(((planActivity: any) =>
@@ -106,6 +128,7 @@ const Plan = () => {
           </div>
         </section>
       ))}
+        </SimpleGrid>
       <PlanForm savePlan={savePlan} saveUpdatedPlan={saveUpdatedPlan} isOpen={isOpen} onClose={onClose} plan={selectedPlan} />
     </Container>
   );
