@@ -39,6 +39,6 @@
   }
   @media (min-width: 1700px) {
       .slider {
-        margin-left: 3%;
+        margin-left: 'auto';
       }
     }
