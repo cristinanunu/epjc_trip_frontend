@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import PlanForm from './components/PlanForm';
 import { TripContext } from './context/Context';
 import About from './pages/About';
 import Home from './pages/Home';
@@ -11,9 +12,9 @@ import Plan, { SavedPlan } from './pages/Plan';
 export interface NewPlan {
   name: string;
   departure: string;
-  destionation: string;
-  startDate: string;
-  endDate: string;
+  destination: string;
+  startDate: Date;
+  endDate: Date;
   participants: number;
   cost: number;
 }
@@ -24,7 +25,8 @@ function App() {
   const [location, setLocation] = useState({});
   const [recommendedActivities, setRecommendedActivities] = useState([]);
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('email') !== null);
-
+  const [searchInputValue,setSearchInputValue]= useState(''); //the value passed when looking for destination
+  const [isInputSearched,setIsInputSearched]=useState(false);
   const client = axios.create({
     baseURL: 'https://epjctripapi.azurewebsites.net/api',
   });
@@ -34,7 +36,8 @@ function App() {
       const response = await client.get('/Plans');
       setPlans(response.data);
     } catch (error) {
-      console.log(error);
+      throw new Error('The request was not successful. Please try again.');
+      //console.log(error);
     }
   }
 
@@ -43,7 +46,8 @@ function App() {
       const response = await client.get('/Activities');
       setActivities(response.data);
     } catch (error) {
-      console.log(error);
+      throw new Error('The request was not successful. Please try again.');
+      //console.log(error);
     }
   }
 
@@ -55,11 +59,9 @@ function App() {
     try {
       const response = await client.post('/Plans', plan);
       const planData = response.data;
-      console.log('response from post', response);
-      console.log('this is plan data', planData);
       setPlans([...plans, planData]);
     } catch (error) {
-      throw new Error('The request to add a new developer was not successful. Try again.');
+      throw new Error('The request to add a new plan was not successful. Try again.');
     }
   }
   const deletePlan = (id: number) => {
@@ -69,7 +71,27 @@ function App() {
   }
 
   async function deletePlanById(id: number) {
-    await client.delete(`/Plans/${id}`);
+    try {
+      await client.delete(`/Plans/${id}`);
+    } catch (error) {
+      throw new Error('The request was not successful. Please try again.')
+      //console.log(error);
+    }
+  }
+
+  const saveUpdatedPlan = async (id: number, plan: NewPlan) => {
+    await updatePlan(id, plan);
+  }
+
+  async function updatePlan(id: number, plan: NewPlan) {
+    try {
+      const response = await client.put(`/Plans/${id}`, plan);
+      console.log('updated plan', response)
+      const planData = response.data;
+      setPlans([...plans, planData]);
+    } catch (error) {
+      throw new Error('The request was not successful. Please try again.')
+    }
   }
   useEffect(() => {
     getPlan();
@@ -80,12 +102,17 @@ function App() {
   return (
     <TripContext.Provider
       value={{
+        isInputSearched, //set to false bcs on render the user hasn't searched for anything
+        setIsInputSearched,
+        searchInputValue, //the actual value that the user puts  
+        setSearchInputValue,
         activities,
         setActivities,
         plans,
         location,
         setLocation,
         savePlan,
+        saveUpdatedPlan,
         deletePlan,
         recommendedActivities,
         setRecommendedActivities,
@@ -97,6 +124,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/myplan" element={<Plan />} />
+        <Route path='/updateplan' element={<PlanForm />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
       </Routes>

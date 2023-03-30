@@ -1,4 +1,5 @@
 import { Text, Box, Divider, Grid, GridItem, Heading } from "@chakra-ui/react";
+import Developers from "../components/Developers";
 
 const About = () => {
   return (
@@ -6,19 +7,22 @@ const About = () => {
       <Heading
         fontSize="4xl"
         m={{ base: "2rem 1rem", lg: "2rem 5rem", xl: "2rem 12rem" }}
+        textAlign={'center'}
       >
         About us
       </Heading>
+      <Developers/>
       <Divider
         orientation="horizontal"
         borderWidth={"1px"}
-        color="epjc.peach"
-        mb={"1rem"}
+        m={"1rem auto"}
+        w='3xl'
+
       />
       <Grid
         templateColumns={"repeat(4,1fr)"}
         p="4px"
-        gridGap={3}
+        gridGap={2}
         m={{ base: "1rem", lg: "1rem 5rem", xl: "2rem 12rem" }}
       >
         <GridItem colSpan={{ base: 4, md: 1 }}>
@@ -34,10 +38,9 @@ const About = () => {
         <GridItem colSpan={{ base: 4, md: 3 }}>
           <Box>
             <Text fontSize={{ base: "xl", md: "2xl" }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-              repellat officia sunt sed delectus soluta ipsam qui rem provident
-              molestiae. Sint laborum eaque optio quas reiciendis, sed earum
-              numquam nemo?
+              We are a team of junior developers freshly graduated from the 
+              &lt; /salt &gt; School of Applied Technology of Amsterdam. This 3 months intensive
+          program &#40; together with some previous experience in coding &#41; gave use the skills to produce this webpage application, that you can use anytime, anywhere.
             </Text>
           </Box>
         </GridItem>
@@ -54,10 +57,7 @@ const About = () => {
         <GridItem colSpan={{ base: 4, md: 3 }}>
           <Box>
             <Text fontSize={{ base: "xl", md: "2xl" }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-              repellat officia sunt sed delectus soluta ipsam qui rem provident
-              molestiae. Sint laborum eaque optio quas reiciendis, sed earum
-              numquam nemo?
+              EPjC is the acronym of our initials &#40; Enrico, Joakim, and Cristina...the P is another amazing former colleague, who is doing something else at the moment &#41;. <br /> Travelling is always needed, and it's a good break from the everyday routine. However, it always harder and harder to keep track of all the possible actitivies that you may choose to do, especially in a short amount of time. And that's when you can make your travel experience EPjC by using our web app!
             </Text>
           </Box>
         </GridItem>
@@ -74,10 +74,7 @@ const About = () => {
         <GridItem colSpan={{ base: 4, md: 3 }}>
           <Box>
             <Text fontSize={{ base: "xl", md: "2xl" }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-              repellat officia sunt sed delectus soluta ipsam qui rem provident
-              molestiae. Sint laborum eaque optio quas reiciendis, sed earum
-              numquam nemo?
+              If you want to know more about us you can contact us anytime. Follow us on our GitHub pages and in our LinkedIn profiles.
             </Text>
           </Box>
         </GridItem>
