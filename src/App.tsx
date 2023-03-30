@@ -21,28 +21,19 @@ function App() {
   const [location, setLocation] = useState({});
   const [recommendedActivities, setRecommendedActivities] = useState([]);
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('email') !== null);
-  
-  // const deletePlan = (id: number) => {
-  //   deletePlanById(id);
-  //   const filterPlans = plans.filter(plan => plan.id !== id);
-  //   setPlans(filterPlans);
-  // }
 
-  // async function deletePlanById(id: number) {
-  //   try {
-  //     await client.delete(`/Plans/${id}`);
-  //   } catch (error) {
-  //     throw new Error('The request was not successful. Please try again.')
-  //     //console.log(error);
-  //   }
-  // }
+  const [searchInputValue,setSearchInputValue]= useState(''); //the value passed when looking for destination
+  const [isInputSearched,setIsInputSearched]=useState(false);
 
   return (
     <TripContext.Provider
       value={{
+        isInputSearched, //set to false bcs on render the user hasn't searched for anything
+        setIsInputSearched,
+        searchInputValue, //the actual value that the user puts  
+        setSearchInputValue,
         location,
         setLocation,
-        // deletePlan,
         recommendedActivities,
         setRecommendedActivities,
         loggedIn,

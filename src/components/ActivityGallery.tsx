@@ -2,7 +2,7 @@ import { Button, ButtonGroup, Text, Card, CardBody, CardFooter, Divider, Heading
 import { useContext } from 'react';
 import { TripContext } from '../context/Context';
 
-interface RecommendedActivity {
+export interface RecommendedActivity {
   id: number;
   name: string;
   imageUrl: string;
@@ -11,6 +11,7 @@ interface RecommendedActivity {
   price: number;
   street: string;
   activityLink: string;
+  city:string
 }
 
 const ActivityGallery = () => {

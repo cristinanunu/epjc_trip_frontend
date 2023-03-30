@@ -1,8 +1,9 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Drawer, Text, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, IconButton, useDisclosure, Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { Image } from '@chakra-ui/react';
+import { Image, Box } from '@chakra-ui/react';
 import logo from '../assets/logo-green.png';
+import logowhite from '../assets/logo-white.png';
 import { useContext } from 'react';
 import { TripContext } from '../context/Context';
 const Navbar = () => {
@@ -14,10 +15,11 @@ const Navbar = () => {
   };
   return (
     <header>
-      <Flex justifyContent={'space-between'} p={'8'} alignItems={'center'} bgColor="green.200">
-        <Image src={logo} alt="logo" boxSize="4rem" ml={2} />
-
-        <Flex display={{ base: 'none', md: 'flex' }} padding={'0.5rem'}>
+      <Flex justifyContent={'space-between'} p={'8'} alignItems={'center'} bgColor="epjc.darkgreen">
+        <Box top={'1'}>
+          <Image src={logowhite} alt="logo" boxSize="4rem" ml={2} />
+        </Box>
+        <Flex display={{ base: 'none', md: 'flex' }} padding={'0.5rem'} bgColor='transparent' color='white' fontSize={'1.7rem'} fontWeight={'bold'}>
           <Link className="nav-link" to="/">
             Home
           </Link>
