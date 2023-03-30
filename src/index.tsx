@@ -3,25 +3,28 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import "./global.css"
+import './global.css';
 
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
-const colors ={
-  epjc : {
+import '@fontsource/oswald';
+import '@fontsource/roboto';
+
+const colors = {
+  epjc: {
     blue: '#0075c3',
-    darkgreen:'#11663d',
+    darkgreen: '#109356',
     green: '#00bf63',
     peach: '#ffbd59',
-    yellow: '#ffde59'
-  }
-}
+    yellow: '#ffde59',
+  },
+};
 
-const fonts ={
-  body: 'montserrat',
-  heading: 'montserrat'
-}
-const theme = extendTheme({colors, fonts})
+const fonts = {
+  body: 'Roboto',
+  heading: 'Oswald',
+};
+const theme = extendTheme({ colors, fonts });
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

@@ -1,4 +1,21 @@
 .nav-link {
   margin-bottom: 1rem;
-  margin-right: 1rem;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .nav-link {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+#root,
+html {
+  background: #fafafa;
 }
