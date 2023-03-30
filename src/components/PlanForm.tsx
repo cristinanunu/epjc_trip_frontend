@@ -1,32 +1,58 @@
-import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Input, NumberInput, NumberInputField, useDisclosure } from '@chakra-ui/react'
-import { useContext, useState } from 'react'
-import { TripContext } from '../context/Context'
+import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Input, NumberInput, NumberInputField } from '@chakra-ui/react'
+import moment from 'moment';
+import { useEffect, useState } from 'react'
+import { NewPlan } from '../App';
+import { SavedPlan } from '../pages/Plan';
 
-const PlanForm = () => {
-  const [myPlan, setMyPlan] = useState({
-    name: '',
-    departure: '',
-    destination: '',
-    startDate: '',
-    endDate: '',
-    participants: 0,
-    cost: 0
-  })
+const defaultState = {
+  name: '',
+  departure: '',
+  destination: '',
+  startDate: '',
+  endDate: '',
+  participants: 0,
+  cost: 0
+};
+
+interface PlanFormProps {
+  plan?: SavedPlan;
+  savePlan: (plan: NewPlan) => void;
+  saveUpdatedPlan: (id: number, plan: NewPlan) => void;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const PlanForm = ({ savePlan, saveUpdatedPlan, plan, isOpen, onClose }: PlanFormProps) => {
+  const [myPlan, setMyPlan] = useState(defaultState);
+  
   const { name, departure, destination, startDate, endDate, participants, cost } = myPlan;
-  const { savePlan }: any = useContext(TripContext);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // Use effect tracks the plan variable
+  useEffect(() => {
+    // If the plan exists (is NOT udefined or null) 
+    // the set state will be called to update the form
+    if (plan) {
+      // with this syntax you extract from plan the keys id and activities and keep all the
+      // remaining keys / data in the variable planData
+      const { id, activities, ...planData } = plan;
+      planData.startDate = moment(plan.startDate).format('YYYY-MM-DD');
+      planData.endDate = moment(plan.endDate).format('YYYY-MM-DD')
+      setMyPlan(planData);
+    }
+  }, [plan]);
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    setMyPlan({ ...myPlan });
-    savePlan(myPlan);
+    if (plan) {
+      saveUpdatedPlan(plan.id, myPlan)
+    } else {
+      savePlan(myPlan);
+      setMyPlan(defaultState);
+    }
   }
 
   return (
     <>
-      <Button onClick={onOpen}>Create plan</Button>
       <Drawer isOpen={isOpen}
         placement='right'
         onClose={onClose}
