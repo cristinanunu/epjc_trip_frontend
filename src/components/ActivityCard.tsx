@@ -5,6 +5,7 @@ interface ActivityProp {
   activity: RecommendedActivity;
 }
 
+
 const ActivityCard = ({ activity }: ActivityProp) => {
   return (
     <Card shadow={'md'} key={activity.id}>

@@ -31,6 +31,7 @@ const LoginForm = () => {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('name', response.data.name);
       localStorage.setItem('email', response.data.email);
+      localStorage.setItem('userId', response.data.id);
       setLoggedIn(true);
       navigate('/myplan');
       reset();
