@@ -16,10 +16,10 @@ const Navbar = () => {
   return (
     <header>
       <Flex justifyContent={'space-between'} p={'8'} alignItems={'center'} bgColor="epjc.darkgreen" w={'100%'}>
-        <Box  borderRadius={'10px'}>
-          <Image src={logowhite} alt="logo" boxSize="4rem"   borderRadius={'10px'}/>
+        <Box borderRadius={'10px'}>
+          <Image src={logowhite} alt="logo" boxSize="4rem" borderRadius={'10px'} />
         </Box>
-        <Flex display={{ base: 'none', md: 'flex' }} padding={'0.5rem'} bgColor='transparent' color='white' fontSize={'1.7rem'} fontWeight={'bold'}>
+        <Flex display={{ base: 'none', md: 'flex' }} padding={'0.5rem'} bgColor="transparent" color="white" fontSize={'1.7rem'} fontWeight={'bold'}>
           <Link className="nav-link" to="/">
             Home
           </Link>
@@ -39,7 +39,7 @@ const Navbar = () => {
           )}
 
           {loggedIn && (
-            <Button background={'epjc.yellow'} color={'epjc.darkgreen'}onClick={logout} ml={5}>
+            <Button background={'epjc.yellow'} color={'epjc.darkgreen'} onClick={logout} ml={5}>
               Log out
             </Button>
           )}
@@ -54,7 +54,7 @@ const Navbar = () => {
         />
       </Flex>
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay display={{ sm: 'flex', md: 'none' }} />
+        <DrawerOverlay />
         <DrawerContent display={{ sm: 'flex', md: 'none' }}>
           <DrawerHeader display="flex" justifyContent="space-between" borderBottomWidth="1px">
             <Image src={logo} alt="logo" boxSize="5rem" />
