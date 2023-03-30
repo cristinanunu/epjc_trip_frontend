@@ -1,5 +1,5 @@
 import { SearchIcon } from '@chakra-ui/icons';
-import { Box, Flex, IconButton, Input } from '@chakra-ui/react';
+import { Box, Flex, Heading, IconButton, Input } from '@chakra-ui/react';
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { epjcAttractions } from '../constants/api';
@@ -8,33 +8,65 @@ import travel from '../assets/travel.jpg';
 
 const FilterActivities = () => {
   const [inputValue, setInputValue] = useState('');
-  const { setRecommendedActivities }: any = useContext(TripContext);
+  const { setIsInputSearched, setSearchInputValue, setRecommendedActivities, recommendedActivities }: any = useContext(TripContext);
 
-  const getRecommendedActivities = async (e: { preventDefault: () => void; }) => {
+  const getRecommendedActivities = async (e: any) => {
     e.preventDefault();
     try {
       const response = await axios.get(`${epjcAttractions}${inputValue}`);
       setRecommendedActivities(response.data);
+      console.log(response.data);
+      console.log(recommendedActivities);
+      setIsInputSearched(true); //is the input searched? if yes, render the card, otherwise don't
+      setSearchInputValue(inputValue);
+      console.log(inputValue); //I need this to pass the props to the home page
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <Box p={10} maxW="2xl" h="xs" m={'auto'} bgImage={travel} bgSize="cover" bgRepeat="no-repeat" borderRadius={'1rem'}>
-      {/* <Heading
+    <Box
+      borderRadius={5}
+      p={10}
+      maxW={{ base: 'xl', md: '3xl' }}
+      h="xxs"
+      m={{ base: '1rem auto', md: 'auto' }}
+      bgImage={travel}
+      bgSize="cover"
+      bgRepeat="no-repeat"
+    >
+      <Heading
         textAlign="center"
-        mb={5}
-        fontSize={{ base: "1.5em", md: "2.5em" }}
-        backgroundColor='green'
+        mb={20}
+        fontSize={'3xl'}
+        backgroundColor="epjc.darkgreen"
         color={'white'}
+        p={1}
+        fontWeight={'normal'}
+        borderRadius={5}
       >
         Where are we going?
-      </Heading> */}
+      </Heading>
+
       <form onSubmit={getRecommendedActivities}>
-        <Flex>
-          <Input value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Where are we going?" />
-          <IconButton type="submit" icon={<SearchIcon />} aria-label={'search activites by location'} />
+        <Flex borderRadius={'15px'}>
+          <Input
+            value={inputValue}
+            onChange={(e: any) => setInputValue(e.target.value)}
+            placeholder="Type your destination (e.g. Paris)"
+            backgroundColor={'white'}
+            borderRadius={'5px 0 0 5px'}
+          />
+          <IconButton
+            borderRadius={'0 5px 5px 0'}
+            bg={'white'}
+            type="submit"
+            icon={<SearchIcon />}
+            aria-label={'search activites by location'}
+            color={'epjc.darkgreen'}
+            variant="customIconButton"
+          />
         </Flex>
       </form>
     </Box>

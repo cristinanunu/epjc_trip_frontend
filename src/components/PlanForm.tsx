@@ -44,7 +44,7 @@ const PlanForm = ({ savePlan, saveUpdatedPlan, plan, isOpen, onClose }: PlanForm
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (plan) {
-      saveUpdatedPlan(plan.id, myPlan)
+      saveUpdatedPlan(plan.id, myPlan);
     } else {
       savePlan(myPlan);
       setMyPlan(defaultState);

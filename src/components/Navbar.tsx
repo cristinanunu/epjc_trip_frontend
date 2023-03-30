@@ -15,11 +15,11 @@ const Navbar = () => {
   };
   return (
     <header>
-      <Flex justifyContent={'space-between'} p={'8'} alignItems={'center'} bgColor="epjc.darkgreen" w={'100%'}>
+      <Flex p={4} alignItems="center" justifyContent={"space-between"} bgColor="epjc.darkgreen" w={'100%'}>
         <Box borderRadius={'10px'}>
           <Image src={logowhite} alt="logo" boxSize="4rem" borderRadius={'10px'} />
         </Box>
-        <Flex display={{ base: 'none', md: 'flex' }} padding={'0.5rem'} bgColor="transparent" color="white" fontSize={'1.7rem'} fontWeight={'bold'}>
+        <Flex display={{ base: 'none', md: 'flex' }} justifyContent="center" alignItems="center" color="white" fontSize={'2xl'} fontWeight={'bold'}>
           <Link className="nav-link" to="/">
             Home
           </Link>
@@ -31,7 +31,7 @@ const Navbar = () => {
           </Link>
 
           {loggedIn ? (
-            <Text backgroundColor={'epjc.darkgreen'}>Welcome {localStorage.getItem('email')} !</Text>
+            <Text backgroundColor={'epjc.darkgreen'}>Welcome {localStorage.getItem('email')}</Text>
           ) : (
             <Link className="nav-link" to="/login">
               Login/Sign up
@@ -39,7 +39,7 @@ const Navbar = () => {
           )}
 
           {loggedIn && (
-            <Button background={'epjc.yellow'} color={'epjc.darkgreen'} onClick={logout} ml={5}>
+            <Button color={'epjc.darkgreen'} onClick={logout} ml={5}>
               Log out
             </Button>
           )}
@@ -53,10 +53,11 @@ const Navbar = () => {
           boxSize="3.5rem"
         />
       </Flex>
+
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent display={{ sm: 'flex', md: 'none' }}>
-          <DrawerHeader display="flex" justifyContent="space-between" borderBottomWidth="1px">
+          <DrawerHeader display="flex" alignItems={"center"} justifyContent="space-between" borderBottomWidth="1px">
             <Image src={logo} alt="logo" boxSize="5rem" />
             <IconButton onClick={onClose} icon={<CloseIcon />} aria-label={'Close button'} />
           </DrawerHeader>
