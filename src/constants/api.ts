@@ -24,9 +24,10 @@ export async function getPlan(): Promise<SavedPlan[]> {
 }
 
 export async function postPlan(plan: NewPlan): Promise<SavedPlan> {
-  console.log('this is a log from the post method', plan);
   try {
     const response = await client.post('/Plans', plan);
+    const stringPlanId = response.data.id;
+    localStorage.setItem('planId', stringPlanId);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -52,5 +53,3 @@ export async function deletePlanById(id: number): Promise<void> {
     throw new Error('The request was not successful. Please try again.');
   }
 }
-
-

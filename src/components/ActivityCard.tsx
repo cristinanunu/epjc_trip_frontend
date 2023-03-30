@@ -1,12 +1,41 @@
 import { Card, Link, Text, Image, CardBody, Stack, Heading, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react';
+import axios from 'axios';
 import { RecommendedActivity } from './ActivityGallery';
 
 interface ActivityProp {
   activity: RecommendedActivity;
 }
 
-
 const ActivityCard = ({ activity }: ActivityProp) => {
+  const addToPlan = async () => {
+    const planId = localStorage.getItem('planId');
+
+    if (planId !== null) {
+      const parsedId = parseInt(planId);
+
+      const newActivity = {
+        id: 0,
+        name: activity.name,
+        description: activity.description,
+        link: activity.activityLink,
+        imageUrl: activity.imageUrl,
+        price: activity.price,
+        rating: activity.rating,
+        street: activity.street,
+        reviewsNumber: activity.reviewsNumber,
+        city: activity.city,
+        planId: parsedId,
+      };
+
+      try {
+        const response = await axios.post('https://epjctripapi.azurewebsites.net/api/Activities', newActivity);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <Card shadow={'md'} key={activity.id}>
       <CardBody>
@@ -24,7 +53,7 @@ const ActivityCard = ({ activity }: ActivityProp) => {
       <Divider />
       <CardFooter>
         <ButtonGroup display="flex" alignItems="center" spacing="5">
-          <Button variant="solid" border={'1px'} bg={'white'} color={'epjc.darkgreen'} borderColor={'epjc.darkgreen'}>
+          <Button onClick={addToPlan} variant="solid" border={'1px'} bg={'white'} color={'epjc.darkgreen'} borderColor={'epjc.darkgreen'}>
             Add to My plan
           </Button>
 

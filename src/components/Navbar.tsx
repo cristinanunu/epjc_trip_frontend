@@ -15,7 +15,7 @@ const Navbar = () => {
   };
   return (
     <header>
-      <Flex p={4} alignItems="center" justifyContent={"space-between"} bgColor="epjc.darkgreen" w={'100%'}>
+      <Flex p={4} alignItems="center" justifyContent={'space-between'} bgColor="epjc.darkgreen" w={'100%'}>
         <Box borderRadius={'10px'}>
           <Image src={logowhite} alt="logo" boxSize="4rem" borderRadius={'10px'} />
         </Box>
@@ -31,7 +31,9 @@ const Navbar = () => {
           </Link>
 
           {loggedIn ? (
-            <Text backgroundColor={'epjc.darkgreen'}>Welcome {localStorage.getItem('email')}</Text>
+            <Text fontWeight={'normal'} backgroundColor={'epjc.darkgreen'}>
+              Logged in as {localStorage.getItem('name')}
+            </Text>
           ) : (
             <Link className="nav-link" to="/login">
               Login/Sign up
@@ -57,7 +59,7 @@ const Navbar = () => {
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent display={{ sm: 'flex', md: 'none' }}>
-          <DrawerHeader display="flex" alignItems={"center"} justifyContent="space-between" borderBottomWidth="1px">
+          <DrawerHeader display="flex" alignItems={'center'} justifyContent="space-between" borderBottomWidth="1px">
             <Image src={logo} alt="logo" boxSize="5rem" />
             <IconButton onClick={onClose} icon={<CloseIcon />} aria-label={'Close button'} />
           </DrawerHeader>
@@ -71,9 +73,29 @@ const Navbar = () => {
             <Link className="nav-link" to="/about" onClick={onClose}>
               About
             </Link>
-            <Link className="nav-link" to="/login" onClick={onClose}>
-              Login/Sign up
-            </Link>
+
+            {loggedIn ? (
+              <Text>Logged in as {localStorage.getItem('name')}</Text>
+            ) : (
+              <Link className="nav-link" to="/login" onClick={onClose}>
+                Login/Sign up
+              </Link>
+            )}
+
+            {loggedIn && (
+              <Button
+                my={4}
+                w={32}
+                _hover={{ bg: 'white', color: 'epjc.darkgreen' }}
+                background={'epjc.darkgreen'}
+                border={'1px'}
+                color={'white'}
+                borderColor={'epjc.darkgreen'}
+                onClick={logout}
+              >
+                Log out
+              </Button>
+            )}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

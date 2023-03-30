@@ -1,10 +1,10 @@
-import { Button, Flex, Heading, Input } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import { loginUrl } from "../constants/api";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { TripContext } from "../context/Context";
+import { Button, Flex, Heading, Input } from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { loginUrl } from '../constants/api';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { TripContext } from '../context/Context';
 
 const LoginForm = () => {
   const { setLoggedIn }: any = useContext(TripContext);
@@ -32,8 +32,9 @@ const LoginForm = () => {
       localStorage.setItem('name', response.data.name);
       localStorage.setItem('email', response.data.email);
       localStorage.setItem('userId', response.data.id);
+
       setLoggedIn(true);
-      navigate("/myplan");
+      navigate('/myplan');
       reset();
     } catch (error) {
       console.log(errors);
@@ -42,32 +43,19 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(login)}>
-      <Flex direction={"column"} maxW="md" m={{ sm: 5, md: "auto" }}>
+      <Flex direction={'column'} maxW="md" m={{ sm: 5, md: 'auto' }}>
         <Heading mb={5} fontSize="lg">
           Log in
         </Heading>
 
-        <Input
-          defaultValue=""
-          {...register("email")}
-          variant="flushed"
-          type="email"
-          placeholder="Email..."
-        />
-        <Input
-          my={5}
-          defaultValue=""
-          {...register("password")}
-          variant="flushed"
-          type="password"
-          placeholder="Password..."
-        />
+        <Input defaultValue="" {...register('email')} variant="flushed" type="email" placeholder="Email..." />
+        <Input my={5} defaultValue="" {...register('password')} variant="flushed" type="password" placeholder="Password..." />
         <Button
-          _hover={{ bg: "white", color: "epjc.darkgreen" }}
-          background={"epjc.darkgreen"}
-          border={"1px"}
-          color={"white"}
-          borderColor={"epjc.darkgreen"}
+          _hover={{ bg: 'white', color: 'epjc.darkgreen' }}
+          background={'epjc.darkgreen'}
+          border={'1px'}
+          color={'white'}
+          borderColor={'epjc.darkgreen'}
           type="submit"
         >
           Log in

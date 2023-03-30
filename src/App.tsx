@@ -23,13 +23,13 @@ function App() {
   const [recommendedActivities, setRecommendedActivities] = useState([]);
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('email') !== null);
 
-  const [searchInputValue,setSearchInputValue]= useState(''); 
-  const [isInputSearched,setIsInputSearched]=useState(false);
+  const [searchInputValue, setSearchInputValue] = useState('');
+  const [isInputSearched, setIsInputSearched] = useState(false);
 
   return (
     <TripContext.Provider
       value={{
-        isInputSearched, 
+        isInputSearched,
         setIsInputSearched,
         searchInputValue,
         setSearchInputValue,
