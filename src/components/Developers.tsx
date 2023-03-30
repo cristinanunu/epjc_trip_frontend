@@ -1,13 +1,12 @@
 import {
   Box,
-  Button,
-  ButtonGroup,
+ 
   Flex,
-  Heading,
+  
   Image,
   Link,
   Popover,
-  PopoverBody,
+  
   PopoverCloseButton,
   PopoverContent,
   PopoverFooter,
@@ -183,7 +182,7 @@ const Developers = () => {
             justifyContent="left"
             p={2}
           >
-            <Image src={norway} mr={2} />
+            <Image src={italy} mr={2} />
             Enrico Garozzo
           </PopoverHeader>
           <PopoverCloseButton bg="epjc.darkgreen" color={"white"} />
