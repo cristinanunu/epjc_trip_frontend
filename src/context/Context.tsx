@@ -1,6 +1,6 @@
-import { createContext, Dispatch, SetStateAction } from 'react';
-import { NewPlan } from '../App';
-import { RecommendedActivity } from '../components/ActivityGallery';
+import { createContext,  } from 'react';
+//import { NewPlan } from '../App';
+//import { RecommendedActivity } from '../components/ActivityGallery';
 // import { RecommendedActivity } from '../components/ActivityGallery';
 
 // export type tripContextType ={
