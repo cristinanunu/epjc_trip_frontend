@@ -19,11 +19,11 @@ import { NewPlan } from '../App';
 import { SavedPlan } from '../pages/Plan';
 
 const defaultState = {
-  name: "",
-  departure: "",
-  destination: "",
-  startDate: "",
-  endDate: "",
+  name: '',
+  departure: '',
+  destination: '',
+  startDate: '',
+  endDate: '',
   participants: 0,
   cost: 0,
   userId: 0,
@@ -37,15 +37,9 @@ interface PlanFormProps {
   onClose: () => void;
 }
 
-const PlanForm = ({
-  savePlan,
-  saveUpdatedPlan,
-  plan,
-  isOpen,
-  onClose,
-}: PlanFormProps) => {
+const PlanForm = ({ savePlan, saveUpdatedPlan, plan, isOpen, onClose }: PlanFormProps) => {
   const [myPlan, setMyPlan] = useState(defaultState);
-  
+
   const { name, departure, destination, startDate, endDate, participants, cost } = myPlan;
 
   // Use effect tracks the plan variable
@@ -65,14 +59,14 @@ const PlanForm = ({
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const id = localStorage.getItem('userId');
+    const userId = localStorage.getItem('userId');
 
-    if (id !== null) {
-      const parsedId = parseInt(id);
+    if (userId !== null) {
+      const parsedUserId = parseInt(userId);
       if (plan) {
         saveUpdatedPlan(plan.id, myPlan);
       } else {
-        myPlan.userId = parsedId;
+        myPlan.userId = parsedUserId;
         savePlan(myPlan);
         setMyPlan(defaultState);
       }
@@ -111,45 +105,33 @@ const PlanForm = ({
               <Box>
                 <FormLabel>Number of participants</FormLabel>
                 <NumberInput min={1}>
-                  <NumberInputField
-                    value={participants}
-                    onChange={(e) =>
-                      setMyPlan({ ...myPlan, participants: +e.target.value })
-                    }
-                  />
+                  <NumberInputField value={participants} onChange={e => setMyPlan({ ...myPlan, participants: +e.target.value })} />
                 </NumberInput>
               </Box>
               <Box>
                 <FormLabel>Planned budget</FormLabel>
-                <Input
-                  value={cost}
-                  onChange={(e) =>
-                    setMyPlan({ ...myPlan, cost: +e.target.value })
-                  }
-                  placeholder="€ "
-                />
+                <Input value={cost} onChange={e => setMyPlan({ ...myPlan, cost: +e.target.value })} placeholder="€ " />
               </Box>
             </form>
           </DrawerBody>
           <DrawerFooter borderTopWidth="1px">
-
             <Button
-              _hover={{ bg: "white", color: "red.500" }}
-              background={"red.500"}
-              border={"1px"}
-              color={"white"}
-              borderColor={"red.500"}
+              _hover={{ bg: 'white', color: 'red.500' }}
+              background={'red.500'}
+              border={'1px'}
+              color={'white'}
+              borderColor={'red.500'}
               onClick={onClose}
               mr={3}
             >
               Cancel
             </Button>
             <Button
-              _hover={{ bg: "white", color: "epjc.darkgreen" }}
-              background={"epjc.darkgreen"}
-              border={"1px"}
-              color={"white"}
-              borderColor={"epjc.darkgreen"}
+              _hover={{ bg: 'white', color: 'epjc.darkgreen' }}
+              background={'epjc.darkgreen'}
+              border={'1px'}
+              color={'white'}
+              borderColor={'epjc.darkgreen'}
               onClick={onClose}
               type="submit"
               form="my-form"

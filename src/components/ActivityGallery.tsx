@@ -12,6 +12,7 @@ export interface RecommendedActivity {
   price: number;
   street: string;
   activityLink: string;
+  reviewsNumber: number;
   city: string;
 }
 
@@ -19,7 +20,7 @@ const ActivityGallery = () => {
   const { recommendedActivities } = useContext<any>(TripContext);
 
   return (
-    <Grid gridTemplateColumns={{ sm: '1fr', md: '1fr 1fr' }} gap={6} maxW={"3xl"} my={6} mx={"auto"}>
+    <Grid gridTemplateColumns={{ sm: '1fr', md: '1fr 1fr' }} gap={6} maxW={'3xl'} my={6} mx={'auto'}>
       {recommendedActivities.map((activity: RecommendedActivity) => (
         <ActivityCard activity={activity} />
       ))}
