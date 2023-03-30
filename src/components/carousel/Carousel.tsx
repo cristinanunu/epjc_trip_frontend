@@ -10,6 +10,7 @@ import paris from "../../assets/paris.jpg";
 import rome from "../../assets/rome.jpg";
 import sydney from "../../assets/sydney.jpg";
 import venice from "../../assets/venice.jpg";
+
 const Carousel = () => {
   const settings = {
     arrows:false,
@@ -45,6 +46,8 @@ const Carousel = () => {
     ],
   };
   return (
+    
+
     <Slider className={Styles.slider} {...settings}>
       <div className={Styles.imgwrapper}>
         <Image className={Styles.carousel} src={cinqueterre} alt="cinqueterre" />

@@ -1,14 +1,14 @@
 .slider {
     margin: 1rem auto;
     display: flex;
-    height: 22vh;
+    height: 25vh;
   }
   .imgwrapper {
-    width: 250px;
+    width: 300px;
     padding: 0.5rem;
   }
   .carousel {
-    padding: 0.5rem;
+
     width: 100%;
     height: 200px;
   }
@@ -19,9 +19,7 @@
     .imgwrapper {
       width: 300px;
     }
-    .carousel {
-      height: 250px;
-    }
+    
   }
   @media (min-width: 768px) {
     .slider {
@@ -34,11 +32,11 @@
     }
     .carousel {
       width: 500px;
-      height: 350px;
+    
     }
   }
   @media (min-width: 1700px) {
       .slider {
-        margin-left: 'auto';
+        margin-left: 3%;
       }
     }

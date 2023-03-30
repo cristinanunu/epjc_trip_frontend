@@ -16,7 +16,7 @@ const About = () => {
         orientation="horizontal"
         borderWidth={"1px"}
         m={"1rem auto"}
-        w='3xl'
+        w='50%'
 
       />
       <Grid

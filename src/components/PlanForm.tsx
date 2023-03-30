@@ -109,8 +109,8 @@ const PlanForm = ({ savePlan, saveUpdatedPlan, plan, isOpen, onClose }: PlanForm
                 </NumberInput>
               </Box>
               <Box>
-                <FormLabel>Planed budget</FormLabel>
-                <Input value={cost} onChange={e => setMyPlan({ ...myPlan, cost: +e.target.value })} placeholder="€ " />
+                <FormLabel>Planned budget</FormLabel>
+                <Input value={cost} onChange={e => setMyPlan({ ...myPlan, cost: +e.target.value })} placeholder='€ ' />
               </Box>
             </form>
           </DrawerBody>
