@@ -21,8 +21,7 @@ function App() {
   const [location, setLocation] = useState({});
   const [recommendedActivities, setRecommendedActivities] = useState([]);
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('email') !== null);
-
-  const [searchInputValue,setSearchInputValue]= useState(''); //the value passed when looking for destination
+  const [searchInputValue,setSearchInputValue]= useState(''); //the full string passed when user click to look for destination
   const [isInputSearched,setIsInputSearched]=useState(false);
 
   return (
