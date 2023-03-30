@@ -16,6 +16,7 @@ export interface SavedPlan {
   participants: number;
   cost: number;
   activities: [];
+  userId: number;
 }
 
 const Plan = () => {

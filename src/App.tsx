@@ -15,21 +15,23 @@ export interface NewPlan {
   endDate: string;
   participants: number;
   cost: number;
+  userId: number;
 }
 
 function App() {
   const [location, setLocation] = useState({});
   const [recommendedActivities, setRecommendedActivities] = useState([]);
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('email') !== null);
-  const [searchInputValue,setSearchInputValue]= useState(''); //the full string passed when user click to look for destination
+
+  const [searchInputValue,setSearchInputValue]= useState(''); 
   const [isInputSearched,setIsInputSearched]=useState(false);
 
   return (
     <TripContext.Provider
       value={{
-        isInputSearched, //set to false bcs on render the user hasn't searched for anything
+        isInputSearched, 
         setIsInputSearched,
-        searchInputValue, //the actual value that the user puts  
+        searchInputValue,
         setSearchInputValue,
         location,
         setLocation,
