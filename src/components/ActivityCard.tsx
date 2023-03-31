@@ -1,5 +1,7 @@
-import { Card, Link, Text, Image, CardBody, Stack, Heading, Divider, CardFooter, ButtonGroup, Button } from '@chakra-ui/react';
+import { Card, Link, Text, Image, CardBody, Stack, Heading, Divider, CardFooter, ButtonGroup, Button, Alert, AlertIcon } from '@chakra-ui/react';
 import axios from 'axios';
+import { useContext, useState } from 'react';
+import { TripContext } from '../context/Context';
 import { RecommendedActivity } from './ActivityGallery';
 
 interface ActivityProp {
@@ -7,8 +9,17 @@ interface ActivityProp {
 }
 
 const ActivityCard = ({ activity }: ActivityProp) => {
+  const [success, setSuccess] = useState(false);
+  const { loggedIn }: any = useContext(TripContext);
+  const [addClicked, setAddClicked] = useState(false);
+
   const addToPlan = async () => {
     const planId = localStorage.getItem('planId');
+    setAddClicked(true);
+
+    setTimeout(() => {
+      setAddClicked(false);
+    }, 3000);
 
     if (planId !== null) {
       const parsedId = parseInt(planId);
@@ -28,11 +39,15 @@ const ActivityCard = ({ activity }: ActivityProp) => {
       };
 
       try {
-        const response = await axios.post('https://epjctripapi.azurewebsites.net/api/Activities', newActivity);
-        console.log(response);
+        await axios.post('https://epjctripapi.azurewebsites.net/api/Activities', newActivity);
+        setSuccess(true);
       } catch (error) {
         console.log(error);
       }
+
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
     }
   };
 
@@ -62,6 +77,18 @@ const ActivityCard = ({ activity }: ActivityProp) => {
           </Link>
         </ButtonGroup>
       </CardFooter>
+      {success && (
+        <Alert status={'success'}>
+          <AlertIcon />
+          Activity added to plan
+        </Alert>
+      )}
+      {addClicked === true && !loggedIn && (
+        <Alert status={'info'}>
+          <AlertIcon />
+          Please log in to add an activity
+        </Alert>
+      )}
     </Card>
   );
 };
