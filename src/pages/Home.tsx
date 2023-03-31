@@ -14,10 +14,14 @@ const Home = () => {
       <FilterActivities />
 
       {!isInputSearched ? null : recommendedActivities.length < 1 ? (
-        <Heading py={4} textAlign="center" > No Results for {searchInputValue} </Heading>
+        <Heading fontWeight={'normal'} py={4} textAlign="center">
+          No results for {searchInputValue}
+        </Heading>
       ) : (
         <>
-          <Heading py={4} textAlign="center"> Results found for {searchInputValue}</Heading>
+          <Heading fontWeight={'normal'} py={4} textAlign="center">
+            Results found for {searchInputValue}
+          </Heading>
           <ActivityGallery />
         </>
       )}

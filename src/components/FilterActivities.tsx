@@ -8,17 +8,20 @@ import travel from '../assets/travel.jpg';
 
 const FilterActivities = () => {
   const [inputValue, setInputValue] = useState('');
-  const { setIsInputSearched, setSearchInputValue, setRecommendedActivities }: any = useContext(TripContext);
+  const { setIsInputSearched, setSearchInputValue, setRecommendedActivities, setLoading }: any = useContext(TripContext);
 
   const getRecommendedActivities = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.get(`${epjcAttractions}${inputValue}`);
       setRecommendedActivities(response.data);
       setIsInputSearched(true);
       setSearchInputValue(inputValue);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
