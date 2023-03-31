@@ -40,7 +40,7 @@ interface PlanFormProps {
 const PlanForm = ({ savePlan, saveUpdatedPlan, plan, isOpen, onClose }: PlanFormProps) => {
   const [myPlan, setMyPlan] = useState(defaultState);
 
-  const { name, departure, destination, startDate, endDate, participants, cost } = myPlan;
+  const { name, departure, destination, startDate, endDate, participants,  } = myPlan;
 
   // Use effect tracks the plan variable
   useEffect(() => {
@@ -108,10 +108,10 @@ const PlanForm = ({ savePlan, saveUpdatedPlan, plan, isOpen, onClose }: PlanForm
                   <NumberInputField value={participants} onChange={e => setMyPlan({ ...myPlan, participants: +e.target.value })} />
                 </NumberInput>
               </Box>
-              <Box>
+              {/* <Box>
                 <FormLabel>Planned budget</FormLabel>
                 <Input value={cost} onChange={e => setMyPlan({ ...myPlan, cost: +e.target.value })} placeholder="€ " />
-              </Box>
+              </Box> */}
             </form>
           </DrawerBody>
           <DrawerFooter borderTopWidth="1px">
