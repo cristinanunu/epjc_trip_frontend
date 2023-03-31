@@ -17,14 +17,22 @@ export interface RecommendedActivity {
 }
 
 const ActivityGallery = () => {
-  const { recommendedActivities } = useContext<any>(TripContext);
+  const { recommendedActivities, loading } = useContext<any>(TripContext);
 
   return (
-    <Grid gridTemplateColumns={{ sm: '1fr', md: '1fr 1fr' }} gap={6} maxW={'3xl'} my={6} mx={'auto'}>
-      {recommendedActivities.map((activity: RecommendedActivity) => (
-        <ActivityCard activity={activity} />
-      ))}
-    </Grid>
+    <>
+      {loading ? (
+        <div className="col-sm-2">
+          <div className="sp sp-3balls"></div>
+        </div>
+      ) : (
+        <Grid gridTemplateColumns={{ sm: '1fr', md: '1fr 1fr' }} gap={6} maxW={'3xl'} my={6} mx={'auto'}>
+          {recommendedActivities.map((activity: RecommendedActivity) => (
+            <ActivityCard activity={activity} />
+          ))}
+        </Grid>
+      )}
+    </>
   );
 };
 
