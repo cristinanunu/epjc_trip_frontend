@@ -7,7 +7,7 @@ const Login = () => {
   const [hasUser, setHasUser] = useState(true);
 
   return (
-    <Flex direction={"column"} mt={20}>
+    <Flex direction={"column"} mt={20} mx={7} >
       {hasUser ? <LoginForm /> : <SignupForm />}
 
       {hasUser ? (
