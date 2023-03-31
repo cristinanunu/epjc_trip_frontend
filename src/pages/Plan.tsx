@@ -104,7 +104,12 @@ const Plan = () => {
                   <Text>Start Date: {moment(plan.startDate).format('YYYY-MM-DD')}</Text>
                   <Text>End Date: {moment(plan.endDate).format('YYYY-MM-DD')}</Text>
                   <Text>Participants: {plan.participants}</Text>
-                  <Text>Cost of the trip: € {plan.cost}</Text>
+                  <Text>
+                    Cost of the trip: €
+                    {plan.activities.length > 0
+                      ? plan.activities?.map((activity: any) => activity?.price).reduce((a, b) => a + b) * plan.participants
+                      : 0}
+                  </Text>
                 </Grid>
                 <Flex my={8}>
                   <Button
