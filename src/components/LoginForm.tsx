@@ -34,7 +34,7 @@ const LoginForm = () => {
       localStorage.setItem('userId', response.data.id);
 
       setLoggedIn(true);
-      navigate('/myplan');
+      navigate('/travelplanner');
       reset();
     } catch (error) {
       console.log(errors);
@@ -44,20 +44,13 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(login)}>
       <Flex direction={'column'} maxW="md" m={{ sm: 5, md: 'auto' }}>
-        <Heading mb={5} fontSize="lg">
+        <Heading color={'gray.700'} mb={5} fontSize="lg">
           Log in
         </Heading>
 
         <Input defaultValue="" {...register('email')} variant="flushed" type="email" placeholder="Email..." />
         <Input my={5} defaultValue="" {...register('password')} variant="flushed" type="password" placeholder="Password..." />
-        <Button
-          _hover={{ bg: 'white', color: 'epjc.darkgreen' }}
-          background={'epjc.darkgreen'}
-          border={'1px'}
-          color={'white'}
-          borderColor={'epjc.darkgreen'}
-          type="submit"
-        >
+        <Button colorScheme="blue" type="submit">
           Log in
         </Button>
       </Flex>
