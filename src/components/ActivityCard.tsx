@@ -37,7 +37,7 @@ const ActivityCard = ({ activity }: ActivityProp) => {
     if (userId !== null) {
       getUserPlans(userId);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addToPlan = async () => {
@@ -97,6 +97,7 @@ const ActivityCard = ({ activity }: ActivityProp) => {
           <Text fontWeight={'bold'}>{activity.ranking}</Text>
           <Text>Number of reviews: {activity.num_reviews}</Text>
           <Text>Address: {activity.address}</Text>
+          
         </Stack>
       </CardBody>
       <CardFooter display={'flex'} flexDirection={'column'}>
@@ -111,24 +112,26 @@ const ActivityCard = ({ activity }: ActivityProp) => {
           <Button onClick={addToPlan} variant="solid" border={'1px'} bg={'white'} color={'blue.400'} borderColor={'epjc.darkgreen'}>
             Add to My plan
           </Button>
-
           <Link href={activity.web_url} isExternal>
             View on Tripadvisor
           </Link>
         </ButtonGroup>
       </CardFooter>
+
       {success && (
         <Alert status={'success'}>
           <AlertIcon />
           Activity added to plan
         </Alert>
       )}
+
       {addClicked === true && !loggedIn && (
         <Alert status={'info'}>
           <AlertIcon />
           Please log in to add an activity
         </Alert>
       )}
+
       {addClicked === true && loggedIn === true && !planExists && (
         <Alert status={'info'}>
           <AlertIcon />

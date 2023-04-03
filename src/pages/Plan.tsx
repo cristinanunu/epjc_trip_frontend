@@ -1,12 +1,13 @@
 import { Heading, Divider, Button, useDisclosure, Flex } from '@chakra-ui/react';
 // import moment from 'moment';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 // import { NewPlan } from '../App';
 // import PlanForm from '../components/PlanForm';
 import { userUrl } from '../constants/api';
 // import AddedActivitiyCard from '../components/AddedActivitiyCard';
 import axios from 'axios';
 import PlanCard from '../components/PlanCard';
+import { TripContext } from '../context/Context';
 
 export interface SavedPlan {
   id: number;
@@ -22,14 +23,14 @@ export interface SavedPlan {
 }
 
 const Plan = () => {
-  const [plans, setPlans]: any = useState([]);
+  const { setPlans, plans }: any = useContext(TripContext);
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     if (userId !== null) {
       getPlans();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getPlans = async () => {
