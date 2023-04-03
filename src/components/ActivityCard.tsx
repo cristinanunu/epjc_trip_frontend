@@ -1,9 +1,10 @@
-import { Card, Box, Link, Text, CardBody, Stack, Heading, CardFooter, ButtonGroup, Button, Alert, AlertIcon, Flex } from '@chakra-ui/react';
+import { Card, Box, Link, Text, CardBody, Stack, Heading, CardFooter, ButtonGroup, Button, Alert, AlertIcon, Flex, Select } from '@chakra-ui/react';
 import axios from 'axios';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { TripContext } from '../context/Context';
 import { RecommendedActivity } from './ActivityGallery';
 import { RatingStar, RatingStarContainer } from 'rating-star';
+import { userUrl } from '../constants/api';
 
 interface ActivityProp {
   activity: RecommendedActivity;
@@ -14,52 +15,63 @@ const ActivityCard = ({ activity }: ActivityProp) => {
   const [planExists, setPlanExists] = useState(false);
   const { loggedIn }: any = useContext(TripContext);
   const [addClicked, setAddClicked] = useState(false);
+  const [userPlans, setUserplan] = useState([]);
+  const [choosenPlan, setChoosenPlan] = useState(null);
 
-  console.log(activity);
+  const userId = localStorage.getItem('userId');
+
+  const getUserPlans = async (id: string) => {
+    try {
+      const response = await axios.get(userUrl + '/' + id);
+      setUserplan(response.data.plans);
+
+      if (response.data.plans.length > 0) {
+        setPlanExists(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (userId !== null) {
+      getUserPlans(userId);
+    }
+  }, []);
 
   const addToPlan = async () => {
-    const planId = localStorage.getItem('planId');
     setAddClicked(true);
 
     const image = activity.photo.images.medium.url === undefined ? 'no image url available' : activity.photo.images.medium.url;
 
-    setTimeout(() => {
-      setAddClicked(false);
-    }, 3000);
+    const newActivity = {
+      name: activity.name,
+      description: activity.description,
+      link: activity.web_url,
+      imageUrl: image,
+      rating: activity.rating,
+      street: activity.address,
+      reviewsNumber: activity.num_reviews,
+      city: activity.address_obj.city,
+      longitude: activity.longitude,
+      latitude: activity.latitude,
+      planId: choosenPlan,
+    };
 
-    if (planId !== null) {
-      const parsedId = parseInt(planId);
-      setPlanExists(true);
-
-      const newActivity = {
-        id: 0,
-        name: activity.name,
-        description: activity.description,
-        link: activity.web_url,
-        imageUrl: image,
-        price: 0,
-        rating: activity.rating,
-        street: activity.address,
-        reviewsNumber: activity.num_reviews,
-        city: activity.address_obj.city,
-        planId: parsedId,
-      };
-
-      try {
-        await axios.post('https://epjctripapi.azurewebsites.net/api/Activities', newActivity);
-        setSuccess(true);
-      } catch (error) {
-        console.log(error);
-      }
-
-      setTimeout(() => {
-        setSuccess(false);
-      }, 3000);
+    try {
+      await axios.post('https://epjctripapi.azurewebsites.net/api/Activities', newActivity);
+      setSuccess(true);
+    } catch (error) {
+      console.log(error);
     }
+
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
   };
 
   return (
-    <Card borderRadius={10} shadow={'md'} key={activity.id} color={'gray.700'}>
+    <Card borderRadius={10} shadow={'md'} color={'gray.700'}>
       <CardBody>
         <Stack>
           <Box
@@ -86,7 +98,14 @@ const ActivityCard = ({ activity }: ActivityProp) => {
           <Text>Address: {activity.address}</Text>
         </Stack>
       </CardBody>
-      <CardFooter>
+      <CardFooter display={'flex'} flexDirection={'column'}>
+        <Select mb={6} placeholder="Select plan" onChange={(event: any) => setChoosenPlan(event.target.value)}>
+          {userPlans.map((plan: any) => (
+            <option key={plan.id} value={plan.id}>
+              {plan.name}
+            </option>
+          ))}
+        </Select>
         <ButtonGroup display="flex" alignItems="center" spacing="5">
           <Button onClick={addToPlan} variant="solid" border={'1px'} bg={'white'} color={'blue.400'} borderColor={'epjc.darkgreen'}>
             Add to My plan

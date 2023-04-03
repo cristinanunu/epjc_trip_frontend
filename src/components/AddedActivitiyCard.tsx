@@ -2,9 +2,8 @@ import { Card, CardBody, Text, Box, Stack, Heading, CardFooter, ButtonGroup, Lin
 import { RatingStarContainer, RatingStar } from 'rating-star';
 
 const AddedActivitiyCard = ({ activity }: any) => {
-  console.log(activity);
   return (
-    <Card color={'gray.700'} borderRadius={10} mb={6} shadow={'md'} key={activity.id}>
+    <Card color={'gray.700'} borderRadius={10} mb={6} shadow={'md'}>
       <CardBody>
         <Stack>
           <Box
@@ -24,7 +23,7 @@ const AddedActivitiyCard = ({ activity }: any) => {
               <RatingStar noBorder id={activity.location_id} rating={activity.rating} />
             </RatingStarContainer>
           </Flex>
-          {/* <Text fontWeight={'bold'}>{activity.ranking}</Text> */}
+          {activity.ranking && <Text fontWeight={'bold'}>{activity.ranking}</Text>}
           <Text>Number of reviews: {activity.reviewsNumber}</Text>
           <Text>Address: {activity.street}</Text>
         </Stack>

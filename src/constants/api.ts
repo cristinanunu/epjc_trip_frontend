@@ -9,6 +9,9 @@ export const apiHost = 'travel-advisor.p.rapidapi.com';
 
 export const loginUrl = 'https://epjctripapi.azurewebsites.net/login';
 export const registerUrl = 'https://epjctripapi.azurewebsites.net/register';
+export const userUrl = 'https://epjctripapi.azurewebsites.net/api/Users';
+
+export const planUrl = 'https://epjctripapi.azurewebsites.net/api/Plans';
 
 const client = axios.create({
   baseURL: 'https://epjctripapi.azurewebsites.net/api',
@@ -27,8 +30,6 @@ export async function getPlan(): Promise<SavedPlan[]> {
 export async function postPlan(plan: NewPlan): Promise<SavedPlan> {
   try {
     const response = await client.post('/Plans', plan);
-    const stringPlanId = response.data.id;
-    localStorage.setItem('planId', stringPlanId);
     return response.data;
   } catch (error) {
     console.log(error);
