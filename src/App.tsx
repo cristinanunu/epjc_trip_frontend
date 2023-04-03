@@ -6,6 +6,7 @@ import About from './pages/About';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Plan from './pages/Plan';
+import PlanDetails from './pages/PlanDetails';
 
 export interface NewPlan {
   name: string;
@@ -48,6 +49,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/travelplanner" element={<Plan />} />
+        <Route path="/travelplanner/:id" element={<PlanDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
       </Routes>

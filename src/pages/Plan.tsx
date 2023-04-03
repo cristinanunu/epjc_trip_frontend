@@ -1,10 +1,12 @@
-import { Heading, Divider, Text, Button, useDisclosure, Flex, Grid } from '@chakra-ui/react';
-import moment from 'moment';
+import { Heading, Divider, Button, useDisclosure, Flex } from '@chakra-ui/react';
+// import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { NewPlan } from '../App';
-import PlanForm from '../components/PlanForm';
-import { deletePlanById, getPlan, postPlan, updatePlan } from '../constants/api';
-import AddedActivitiyCard from '../components/AddedActivitiyCard';
+// import { NewPlan } from '../App';
+// import PlanForm from '../components/PlanForm';
+import { userUrl } from '../constants/api';
+// import AddedActivitiyCard from '../components/AddedActivitiyCard';
+import axios from 'axios';
+import PlanCard from '../components/PlanCard';
 
 export interface SavedPlan {
   id: number;
@@ -20,56 +22,74 @@ export interface SavedPlan {
 }
 
 const Plan = () => {
-  const [plans, setPlans] = useState<SavedPlan[]>([]);
-  const [selectedPlan, setSelectedPlan] = useState<SavedPlan | undefined>(undefined);
-
+  const [plans, setPlans]: any = useState([]);
   const userId = localStorage.getItem('userId');
 
-  const getPlanFromApi = async () => {
-    const plans = await getPlan();
-    setPlans(plans || []);
-  };
+  useEffect(() => {
+    if (userId !== null) {
+      getPlans();
+    }
+  }, []);
 
-  const savePlan = async (plan: NewPlan) => {
-    const saveAPlan = await postPlan(plan);
-    if (saveAPlan) {
-      setPlans([...plans, saveAPlan]);
+  const getPlans = async () => {
+    try {
+      const response = await axios.get(userUrl + '/' + userId);
+      setPlans(response.data.plans);
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const saveUpdatedPlan = async (id: number, plan: NewPlan) => {
-    const updateAPlan = await updatePlan(id, plan);
-    const updatedPlans = plans.map(plan => {
-      if (plan.id === id) {
-        return updateAPlan;
-      }
-      return plan;
-    });
-    setPlans(updatedPlans);
-  };
+  // const [plans, setPlans] = useState<SavedPlan[]>([]);
+  // const [selectedPlan, setSelectedPlan] = useState<SavedPlan | undefined>(undefined);
 
-  const deletePlan = async (id: number) => {
-    await deletePlanById(id);
-    const filterPlans = plans.filter(plan => plan.id !== id);
-    setPlans(filterPlans);
-    localStorage.removeItem('planId');
-  };
+  // const userId = localStorage.getItem('userId');
 
-  useEffect(() => {
-    getPlanFromApi();
-  }, []);
+  // const getPlanFromApi = async () => {
+  //   const plans = await getPlan();
+  //   setPlans(plans || []);
+  // };
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const savePlan = async (plan: NewPlan) => {
+  //   const saveAPlan = await postPlan(plan);
+  //   if (saveAPlan) {
+  //     setPlans([...plans, saveAPlan]);
+  //   }
+  // };
 
-  const handleDelete = (id: number) => {
-    console.log(id);
-    deletePlan(id);
-  };
+  // const saveUpdatedPlan = async (id: number, plan: NewPlan) => {
+  //   const updateAPlan = await updatePlan(id, plan);
+  //   const updatedPlans = plans.map(plan => {
+  //     if (plan.id === id) {
+  //       return updateAPlan;
+  //     }
+  //     return plan;
+  //   });
+  //   setPlans(updatedPlans);
+  // };
 
-  const handleOnClick = (plan: SavedPlan) => {
-    setSelectedPlan(plan);
-    onOpen();
-  };
+  // const deletePlan = async (id: number) => {
+  //   await deletePlanById(id);
+  //   const filterPlans = plans.filter(plan => plan.id !== id);
+  //   setPlans(filterPlans);
+  //   localStorage.removeItem('planId');
+  // };
+
+  // useEffect(() => {
+  //   getPlanFromApi();
+  // }, []);
+
+  const { onOpen } = useDisclosure();
+
+  // const handleDelete = (id: number) => {
+  //   console.log(id);
+  //   deletePlan(id);
+  // };
+
+  // const handleOnClick = (plan: SavedPlan) => {
+  //   setSelectedPlan(plan);
+  //   onOpen();
+  // };
 
   return (
     <Flex pt={40} direction={'column'} maxW={'3xl'} mx={{ sm: 5, md: 'auto' }}>
@@ -85,6 +105,12 @@ const Plan = () => {
       <Divider mb={4} />
 
       <Flex>
+        {plans.map((plan: any) => (
+          <PlanCard plan={plan} />
+        ))}
+      </Flex>
+
+      {/* <Flex>
         {userId !== null &&
           plans
             .filter(plan => plan.userId === parseInt(userId))
@@ -129,8 +155,8 @@ const Plan = () => {
                 </Flex>
               </Flex>
             ))}
-      </Flex>
-      <PlanForm savePlan={savePlan} saveUpdatedPlan={saveUpdatedPlan} isOpen={isOpen} onClose={onClose} plan={selectedPlan} />
+      </Flex> */}
+      {/* <PlanForm savePlan={savePlan} saveUpdatedPlan={saveUpdatedPlan} isOpen={isOpen} onClose={onClose} plan={selectedPlan} /> */}
     </Flex>
   );
 };

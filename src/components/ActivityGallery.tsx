@@ -4,6 +4,8 @@ import { TripContext } from '../context/Context';
 import ActivityCard from './ActivityCard';
 
 export interface RecommendedActivity {
+  latitude: any;
+  longitude: any;
   location_id: string;
   ranking: string;
   address_obj: any;
