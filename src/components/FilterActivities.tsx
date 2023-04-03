@@ -2,20 +2,62 @@ import { SearchIcon } from '@chakra-ui/icons';
 import { Box, Flex, Heading, IconButton, Input } from '@chakra-ui/react';
 import axios from 'axios';
 import { useContext, useState } from 'react';
-import { epjcAttractions } from '../constants/api';
 import { TripContext } from '../context/Context';
-import travel from '../assets/travel.jpg';
+import { apiHost, apiKey, traveAdvisorAttractionsUrl, travelAdvisorSearchUrl } from '../constants/api';
 
 const FilterActivities = () => {
   const [inputValue, setInputValue] = useState('');
-  const { setIsInputSearched, setSearchInputValue, setRecommendedActivities, setLoading }: any = useContext(TripContext);
+  const { loading, setIsInputSearched, setSearchInputValue, setRecommendedActivities, setLoading, recommendedActivities }: any =
+    useContext(TripContext);
 
   const getRecommendedActivities = async (e: any) => {
     e.preventDefault();
     setLoading(true);
+
+    const locationOptions: any = {
+      method: 'GET',
+      url: travelAdvisorSearchUrl,
+      params: {
+        query: inputValue,
+        limit: '30',
+        offset: '0',
+        units: 'km',
+        location_id: '1',
+        currency: 'USD',
+        sort: 'relevance',
+        lang: 'en_US',
+      },
+      headers: {
+        'X-RapidAPI-Key': apiKey,
+        'X-RapidAPI-Host': apiHost,
+      },
+    };
+
     try {
-      const response = await axios.get(`${epjcAttractions}${inputValue}`);
-      setRecommendedActivities(response.data);
+      const locationIdResponse = await axios.request(locationOptions);
+      const locationId = locationIdResponse.data.data[0].result_object.location_id;
+
+      const attractionsOptions = {
+        method: 'GET',
+        url: traveAdvisorAttractionsUrl,
+        params: {
+          location_id: locationId,
+          currency: 'USD',
+          lang: 'en_US',
+          lunit: 'km',
+          sort: 'recommended',
+        },
+        headers: {
+          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Host': apiHost,
+        },
+      };
+
+      const attractionsResponse = await axios.request(attractionsOptions);
+      const activities = attractionsResponse.data.data.filter((activity: any) => activity.name !== undefined);
+
+      setRecommendedActivities(activities);
+
       setIsInputSearched(true);
       setSearchInputValue(inputValue);
       setLoading(false);
@@ -27,25 +69,15 @@ const FilterActivities = () => {
 
   return (
     <Box
-      borderRadius={5}
-      p={10}
-      maxW={{ base: 'xl', md: '3xl' }}
-      h="xxs"
-      m={{ base: '1rem auto', md: 'auto' }}
-      bgImage={travel}
-      bgSize="cover"
-      bgRepeat="no-repeat"
+      mt={recommendedActivities.length < 1 ? 0 : { sm: 32, md: 52 }}
+      mb={20}
+      background={'#fafafa'}
+      py={10}
+      px={20}
+      borderRadius={10}
+      shadow={'lg'}
     >
-      <Heading
-        textAlign="center"
-        mb={20}
-        fontSize={'3xl'}
-        backgroundColor="epjc.darkgreen"
-        color={'white'}
-        p={1}
-        fontWeight={'normal'}
-        borderRadius={5}
-      >
+      <Heading color={'gray.700'} mb={5} textAlign="center">
         Where are we going?
       </Heading>
 
@@ -60,15 +92,21 @@ const FilterActivities = () => {
           />
           <IconButton
             borderRadius={'0 5px 5px 0'}
-            bg={'white'}
+            bg={'blue.400'}
+            color={'white'}
             type="submit"
             icon={<SearchIcon />}
             aria-label={'search activites by location'}
-            color={'epjc.darkgreen'}
             variant="customIconButton"
           />
         </Flex>
       </form>
+
+      {loading && (
+        <div className="col-sm-2">
+          <div className="sp sp-3balls"></div>
+        </div>
+      )}
     </Box>
   );
 };

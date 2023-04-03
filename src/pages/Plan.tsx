@@ -2,9 +2,9 @@ import { Heading, Divider, Text, Button, useDisclosure, Flex, Grid } from '@chak
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { NewPlan } from '../App';
-import ActivityCard from '../components/ActivityCard';
 import PlanForm from '../components/PlanForm';
 import { deletePlanById, getPlan, postPlan, updatePlan } from '../constants/api';
+import AddedActivitiyCard from '../components/AddedActivitiyCard';
 
 export interface SavedPlan {
   id: number;
@@ -72,17 +72,12 @@ const Plan = () => {
   };
 
   return (
-    <Flex mt={10} direction={'column'} maxW={'3xl'} mx={{ sm: 5, md: 'auto' }}>
+    <Flex pt={40} direction={'column'} maxW={'3xl'} mx={{ sm: 5, md: 'auto' }}>
       <Flex alignItems={'center'} justifyContent={'space-between'}>
-        <Heading py={4}>My Plan</Heading>
-        <Button
-          _hover={{ bg: 'white', color: 'epjc.darkgreen' }}
-          background={'epjc.darkgreen'}
-          border={'1px'}
-          color={'white'}
-          borderColor={'epjc.darkgreen'}
-          onClick={onOpen}
-        >
+        <Heading color={'gray.700'} py={4}>
+          Travel Planner
+        </Heading>
+        <Button colorScheme="blue" onClick={onOpen}>
           Create plan
         </Button>
       </Flex>
@@ -112,15 +107,7 @@ const Plan = () => {
                   </Text>
                 </Grid>
                 <Flex my={8}>
-                  <Button
-                    background={'epjc.darkgreen'}
-                    border={'1px'}
-                    color={'white'}
-                    borderColor={'epjc.darkgreen'}
-                    mr={6}
-                    onClick={() => handleOnClick(plan)}
-                    _hover={{ bg: 'white', color: 'epjc.darkgreen' }}
-                  >
+                  <Button colorScheme="blue" mr={6} onClick={() => handleOnClick(plan)}>
                     Update
                   </Button>
                   <Button background={'white'} border={'1px'} borderColor={'red.500'} color={'red.500'} onClick={() => handleDelete(plan.id)}>
@@ -133,13 +120,13 @@ const Plan = () => {
                 <Heading fontSize={'3xl'} mb={8}>
                   Activities
                 </Heading>
-                <Grid mb={8} gap={6} gridTemplateColumns={{ sm: '1fr', md: '1fr 1fr' }}>
+                <Flex direction={'column'}>
                   {plan.activities
                     ?.filter((activity: any) => activity.planId === plan.id)
                     .map((planActivity: any) => (
-                      <ActivityCard key={planActivity.id} activity={planActivity} />
+                      <AddedActivitiyCard key={planActivity.id} activity={planActivity} />
                     ))}
-                </Grid>
+                </Flex>
               </Flex>
             ))}
       </Flex>

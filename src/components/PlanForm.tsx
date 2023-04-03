@@ -40,7 +40,7 @@ interface PlanFormProps {
 const PlanForm = ({ savePlan, saveUpdatedPlan, plan, isOpen, onClose }: PlanFormProps) => {
   const [myPlan, setMyPlan] = useState(defaultState);
 
-  const { name, departure, destination, startDate, endDate, participants,  } = myPlan;
+  const { name, departure, destination, startDate, endDate, participants } = myPlan;
 
   // Use effect tracks the plan variable
   useEffect(() => {
@@ -80,7 +80,7 @@ const PlanForm = ({ savePlan, saveUpdatedPlan, plan, isOpen, onClose }: PlanForm
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader borderBottomWidth="1px">Your plan</DrawerHeader>
-          <DrawerBody>
+          <DrawerBody pt={20}>
             <form onSubmit={handleFormSubmit} id="my-form">
               <Box>
                 <FormLabel>Plan name</FormLabel>
@@ -126,16 +126,7 @@ const PlanForm = ({ savePlan, saveUpdatedPlan, plan, isOpen, onClose }: PlanForm
             >
               Cancel
             </Button>
-            <Button
-              _hover={{ bg: 'white', color: 'epjc.darkgreen' }}
-              background={'epjc.darkgreen'}
-              border={'1px'}
-              color={'white'}
-              borderColor={'epjc.darkgreen'}
-              onClick={onClose}
-              type="submit"
-              form="my-form"
-            >
+            <Button colorScheme="blue" onClick={onClose} type="submit" form="my-form">
               Save plan
             </Button>
           </DrawerFooter>
