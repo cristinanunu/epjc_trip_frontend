@@ -24,6 +24,7 @@ function App() {
   const [recommendedActivities, setRecommendedActivities] = useState([]);
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('email') !== null);
   const [loading, setLoading] = useState(false);
+  const [plans, setPlans]: any = useState([]);
 
   const [searchInputValue, setSearchInputValue] = useState('');
   const [isInputSearched, setIsInputSearched] = useState(false);
@@ -43,6 +44,8 @@ function App() {
         setLoggedIn,
         loading,
         setLoading,
+        plans,
+        setPlans,
       }}
     >
       <Navbar />

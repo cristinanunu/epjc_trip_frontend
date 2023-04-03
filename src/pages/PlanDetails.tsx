@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { planUrl } from '../constants/api';
 import axios from 'axios';
-import { Button, Divider, Flex, Heading } from '@chakra-ui/react';
+import { Button, Divider, Flex, Heading, Text } from '@chakra-ui/react';
+import AddedActivitiyCard from '../components/AddedActivitiyCard';
 
 const PlanDetails = () => {
   let { id } = useParams();
@@ -29,8 +30,17 @@ const PlanDetails = () => {
         <Button colorScheme="blue">Edit plan</Button>
       </Flex>
       <Divider mb={6} />
+      <Heading mb={6}>Activities</Heading>
       <Flex>
-        <Heading>Activities</Heading>
+        {plan.activities ? (
+          <Flex direction={'column'}>
+            {plan.activities.map((activity: any) => (
+              <AddedActivitiyCard activity={activity} />
+            ))}
+          </Flex>
+        ) : (
+          <Text>No activities added yet</Text>
+        )}
       </Flex>
     </Flex>
   );
