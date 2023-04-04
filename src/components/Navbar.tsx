@@ -54,18 +54,8 @@ const Navbar = () => {
           <Link className={location === "/" ? "active" : "nav-link"} to="/">
             Home
           </Link>
-          {loggedIn ? (
-            <Link
-              className={location === "/travelplanner" ? "active" : "nav-link"}
-              to="/travelplanner"
-            >
-              Travel Planner
-            </Link>
-          ) : null}
-          <Link
-            className={location === "/about" ? "active" : "nav-link"}
-            to="/about"
-          >
+          
+          <Link className="nav-link" to="/about">
             About
           </Link>
 
@@ -139,11 +129,15 @@ const Navbar = () => {
             >
               Travel Planner
             </Link>
+            <Link className="nav-link" to="/co2calculator">
+              CO2 Calculator
+            </Link>
             <Link
               className={location === "/about" ? "active" : "nav-link"}
               to="/about"
               onClick={onClose}
             >
+          
               About
             </Link>
 

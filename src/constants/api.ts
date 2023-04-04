@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { NewPlan } from '../App';
+// import { AccomodationCO2 } from '../pages/CO2Calculator';
 import { SavedPlan } from '../pages/Plan';
 
+export const epjcAttractions = 'https://epjcattractions.azurewebsites.net/api/Activities?location=';
 export const travelAdvisorSearchUrl = 'https://travel-advisor.p.rapidapi.com/locations/search';
 export const traveAdvisorAttractionsUrl = 'https://travel-advisor.p.rapidapi.com/attractions/list';
 export const apiKey = '4887eda678mshdc0804b3f912ba8p11db58jsn1475c5f5dc16';
 export const apiHost = 'travel-advisor.p.rapidapi.com';
-
 export const loginUrl = 'https://epjctripapi.azurewebsites.net/login';
 export const registerUrl = 'https://epjctripapi.azurewebsites.net/register';
 export const userUrl = 'https://epjctripapi.azurewebsites.net/api/Users';

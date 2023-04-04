@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import TravelForm from './components/TravelForm';
 import { TripContext } from './context/Context';
 import About from './pages/About';
 import Home from './pages/Home';
@@ -51,6 +52,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path='/co2calculator' element={<TravelForm />} />
         <Route path="/travelplanner" element={<Plan />} />
         <Route path="/travelplanner/:id" element={<PlanDetails />} />
         <Route path="/about" element={<About />} />
