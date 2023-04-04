@@ -51,6 +51,7 @@ const ActivityCard = ({ activity }: ActivityProp) => {
       link: activity.web_url,
       imageUrl: image,
       rating: activity.rating,
+      ranking: activity.ranking,
       street: activity.address,
       reviewsNumber: activity.num_reviews,
       city: activity.address_obj.city,
@@ -97,7 +98,6 @@ const ActivityCard = ({ activity }: ActivityProp) => {
           <Text fontWeight={'bold'}>{activity.ranking}</Text>
           <Text>Number of reviews: {activity.num_reviews}</Text>
           <Text>Address: {activity.address}</Text>
-          
         </Stack>
       </CardBody>
       <CardFooter display={'flex'} flexDirection={'column'}>
