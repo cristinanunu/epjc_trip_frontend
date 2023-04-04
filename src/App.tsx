@@ -7,6 +7,7 @@ import About from './pages/About';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Plan from './pages/Plan';
+import PlanDetails from './pages/PlanDetails';
 
 export interface NewPlan {
   name: string;
@@ -24,6 +25,7 @@ function App() {
   const [recommendedActivities, setRecommendedActivities] = useState([]);
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('email') !== null);
   const [loading, setLoading] = useState(false);
+  const [plans, setPlans]: any = useState([]);
 
   const [searchInputValue, setSearchInputValue] = useState('');
   const [isInputSearched, setIsInputSearched] = useState(false);
@@ -43,13 +45,16 @@ function App() {
         setLoggedIn,
         loading,
         setLoading,
+        plans,
+        setPlans,
       }}
     >
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/myplan" element={<Plan />} />
         <Route path='/co2calculator' element={<TravelForm />} />
+        <Route path="/travelplanner" element={<Plan />} />
+        <Route path="/travelplanner/:id" element={<PlanDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
       </Routes>

@@ -1,40 +1,26 @@
-import { Text, Flex, Button } from "@chakra-ui/react";
-import { useState } from "react";
-import LoginForm from "../components/LoginForm";
-import SignupForm from "../components/SignupForm";
+import { Text, Flex, Button } from '@chakra-ui/react';
+import { useState } from 'react';
+import LoginForm from '../components/LoginForm';
+import SignupForm from '../components/SignupForm';
 
 const Login = () => {
   const [hasUser, setHasUser] = useState(true);
 
   return (
-    <Flex direction={"column"} mt={20} mx={7} >
+    <Flex direction={'column'} pt={40} mx={7}>
       {hasUser ? <LoginForm /> : <SignupForm />}
 
       {hasUser ? (
-        <Flex mt={5} justifyContent={"center"} alignItems="center">
+        <Flex mt={5} justifyContent={'center'} alignItems="center">
           <Text mr={5}>Are you not EPjC yet?</Text>
-          <Button
-            _hover={{ bg: "white", color: "epjc.darkgreen" }}
-            background={"epjc.darkgreen"}
-            border={"1px"}
-            color={"white"}
-            borderColor={"epjc.darkgreen"}
-            onClick={() => setHasUser(false)}
-          >
+          <Button colorScheme="blue" onClick={() => setHasUser(false)}>
             Sign up
           </Button>
         </Flex>
       ) : (
-        <Flex mt={5} justifyContent={"center"} alignItems="center">
+        <Flex mt={5} justifyContent={'center'} alignItems="center">
           <Text mr={5}>Are you EPjC?</Text>
-          <Button
-            _hover={{ bg: "white", color: "epjc.darkgreen" }}
-            background={"epjc.darkgreen"}
-            border={"1px"}
-            color={"white"}
-            borderColor={"epjc.darkgreen"}
-            onClick={() => setHasUser(true)}
-          >
+          <Button colorScheme="blue" onClick={() => setHasUser(true)}>
             Log in
           </Button>
         </Flex>

@@ -1,24 +1,18 @@
-// export const tripAdvisorLocation = 'https://api.content.tripadvisor.com/api/v1/location/search';
-// export const tripAdvisorKey = '7C23E6E7D20B4DCF96588CBA6859738D';
-
 import axios from 'axios';
 import { NewPlan } from '../App';
 // import { AccomodationCO2 } from '../pages/CO2Calculator';
 import { SavedPlan } from '../pages/Plan';
 
-export interface CO2ForAccomodation {
-  type: string
-  nights: number
-  people: number
-  country_code: string
-  co2e_pp: number
-  co2e: number
-  title: string
-}
-
 export const epjcAttractions = 'https://epjcattractions.azurewebsites.net/api/Activities?location=';
+export const travelAdvisorSearchUrl = 'https://travel-advisor.p.rapidapi.com/locations/search';
+export const traveAdvisorAttractionsUrl = 'https://travel-advisor.p.rapidapi.com/attractions/list';
+export const apiKey = '4887eda678mshdc0804b3f912ba8p11db58jsn1475c5f5dc16';
+export const apiHost = 'travel-advisor.p.rapidapi.com';
 export const loginUrl = 'https://epjctripapi.azurewebsites.net/login';
 export const registerUrl = 'https://epjctripapi.azurewebsites.net/register';
+export const userUrl = 'https://epjctripapi.azurewebsites.net/api/Users';
+
+export const planUrl = 'https://epjctripapi.azurewebsites.net/api/Plans';
 
 const client = axios.create({
   baseURL: 'https://epjctripapi.azurewebsites.net/api',
@@ -37,8 +31,6 @@ export async function getPlan(): Promise<SavedPlan[]> {
 export async function postPlan(plan: NewPlan): Promise<SavedPlan> {
   try {
     const response = await client.post('/Plans', plan);
-    const stringPlanId = response.data.id;
-    localStorage.setItem('planId', stringPlanId);
     return response.data;
   } catch (error) {
     console.log(error);

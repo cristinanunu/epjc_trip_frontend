@@ -4,6 +4,15 @@ import { TripContext } from '../context/Context';
 import ActivityCard from './ActivityCard';
 
 export interface RecommendedActivity {
+  latitude: any;
+  longitude: any;
+  location_id: string;
+  ranking: string;
+  address_obj: any;
+  num_reviews: any;
+  web_url: string | undefined;
+  photo: any;
+  address: any;
   id: number;
   name: string;
   imageUrl: string;
@@ -17,22 +26,14 @@ export interface RecommendedActivity {
 }
 
 const ActivityGallery = () => {
-  const { recommendedActivities, loading } = useContext<any>(TripContext);
+  const { recommendedActivities } = useContext<any>(TripContext);
 
   return (
-    <>
-      {loading ? (
-        <div className="col-sm-2">
-          <div className="sp sp-3balls"></div>
-        </div>
-      ) : (
-        <Grid gridTemplateColumns={{ sm: '1fr', md: '1fr 1fr' }} gap={6} maxW={'3xl'} my={6} mx={'auto'}>
-          {recommendedActivities.map((activity: RecommendedActivity) => (
-            <ActivityCard activity={activity} />
-          ))}
-        </Grid>
-      )}
-    </>
+    <Grid gridTemplateColumns={{ sm: '1fr', md: '1fr 1fr 1fr' }} gap={6} my={6} mx={10}>
+      {recommendedActivities.map((activity: RecommendedActivity) => (
+        <ActivityCard activity={activity} />
+      ))}
+    </Grid>
   );
 };
 

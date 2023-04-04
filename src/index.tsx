@@ -7,23 +7,19 @@ import './global.css';
 
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
-import '@fontsource/oswald';
-import '@fontsource/roboto';
-
 const colors = {
   epjc: {
-    blue: '#0075c3',
-    darkgreen: '#109356',
-    green: '#00bf63',
-    peach: '#ffbd59',
-    yellow: '#ffde59',
+    primary: '#0075c3',
+    secondary: '#109356',
+    text: '#00bf63',
   },
 };
 
 const fonts = {
-  body: 'Roboto',
-  heading: 'Oswald',
+  body: 'sans-serif',
+  heading: 'sans-serif',
 };
+
 const theme = extendTheme({ colors, fonts });
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
