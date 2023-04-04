@@ -3,7 +3,18 @@
 
 import axios from 'axios';
 import { NewPlan } from '../App';
+// import { AccomodationCO2 } from '../pages/CO2Calculator';
 import { SavedPlan } from '../pages/Plan';
+
+export interface CO2ForAccomodation {
+  type: string
+  nights: number
+  people: number
+  country_code: string
+  co2e_pp: number
+  co2e: number
+  title: string
+}
 
 export const epjcAttractions = 'https://epjcattractions.azurewebsites.net/api/Activities?location=';
 export const loginUrl = 'https://epjctripapi.azurewebsites.net/login';

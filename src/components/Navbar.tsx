@@ -26,6 +26,9 @@ const Navbar = () => {
           <Link className="nav-link" to="/myplan">
             My Plan
           </Link>
+          <Link className="nav-link" to="/co2calculator">
+            CO2 Calculator
+          </Link>
           <Link className="nav-link" to="/about">
             About
           </Link>
@@ -69,6 +72,9 @@ const Navbar = () => {
             </Link>
             <Link className="nav-link" to="/myplan" onClick={onClose}>
               My Plan
+            </Link>
+            <Link className="nav-link" to="/co2calculator">
+              CO2 Calculator
             </Link>
             <Link className="nav-link" to="/about" onClick={onClose}>
               About
