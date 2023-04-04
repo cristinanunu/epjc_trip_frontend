@@ -10,8 +10,8 @@ export const apiHost = 'travel-advisor.p.rapidapi.com';
 export const loginUrl = 'https://epjctripapi.azurewebsites.net/login';
 export const registerUrl = 'https://epjctripapi.azurewebsites.net/register';
 export const userUrl = 'https://epjctripapi.azurewebsites.net/api/Users';
-
 export const planUrl = 'https://epjctripapi.azurewebsites.net/api/Plans';
+export const activityUrl = 'https://epjctripapi.azurewebsites.net/api/Activities';
 
 const client = axios.create({
   baseURL: 'https://epjctripapi.azurewebsites.net/api',
