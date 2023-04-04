@@ -1,5 +1,5 @@
 import { useState, FormEvent } from "react";
-import { FormLabel, Input, Select, Button, Container, NumberInput, NumberInputField, Flex, Box } from "@chakra-ui/react";
+import { FormLabel, Input, Select, Button, Container, NumberInput, NumberInputField, Flex, Box, Heading } from "@chakra-ui/react";
 import axios from "axios";
 import { PieChart } from "./PieChart";
 
@@ -133,7 +133,8 @@ const TravelForm = () => {
   };
 
   return (
-    <Container>
+    <Container pt={28}>
+      <Heading color={'gray.700'}>Calculate carbon footprint</Heading>
       <form onSubmit={handleSubmit}>
 
         <FormLabel>From</FormLabel>
@@ -241,12 +242,10 @@ const TravelForm = () => {
             </NumberInput>
           </Box>
         </Flex>
-        <Button background={'epjc.darkgreen'}
-          border={'1px'}
-          color={'white'}
-          borderColor={'epjc.darkgreen'}
-          _hover={{ bg: 'white', color: 'epjc.darkgreen' }}
+        <Button
+          colorScheme={'blue'}
           mt={4}
+          mb={4}
           type="submit">Calculate CO2 Footprint</Button>
       </form>
       {co2ForTrip && <PieChart co2ForTrip={co2ForTrip} />}

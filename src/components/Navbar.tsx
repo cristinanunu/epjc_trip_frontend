@@ -54,8 +54,16 @@ const Navbar = () => {
           <Link className={location === "/" ? "active" : "nav-link"} to="/">
             Home
           </Link>
-          
-          <Link className="nav-link" to="/about">
+          <Link
+            className={location === "/travelplanner" ? "active" : "nav-link"}
+            to="/travelplanner"
+          >
+            Travel Planner
+          </Link>
+          <Link className={location === "/co2calculator" ? "active" : "nav-link"} to="/co2calculator">
+            CO2 Calculator
+          </Link>
+          <Link className={location === "/about" ? "active" : "nav-link"} to="/about">
             About
           </Link>
 
@@ -129,7 +137,7 @@ const Navbar = () => {
             >
               Travel Planner
             </Link>
-            <Link className="nav-link" to="/co2calculator">
+            <Link className={location === "/co2calculator" ? "active" : "nav-link"} to="/co2calculator" onClick={onClose}>
               CO2 Calculator
             </Link>
             <Link
@@ -137,7 +145,7 @@ const Navbar = () => {
               to="/about"
               onClick={onClose}
             >
-          
+
               About
             </Link>
 
