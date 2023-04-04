@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { NewPlan } from '../App';
-// import { AccomodationCO2 } from '../pages/CO2Calculator';
 import { SavedPlan } from '../pages/Plan';
 
 export const epjcAttractions = 'https://epjcattractions.azurewebsites.net/api/Activities?location=';
