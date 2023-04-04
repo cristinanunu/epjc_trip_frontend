@@ -1,13 +1,13 @@
 import { Heading, Divider, Button, useDisclosure, Flex } from '@chakra-ui/react';
 // import moment from 'moment';
 import { useContext, useEffect } from 'react';
-// import { NewPlan } from '../App';
-// import PlanForm from '../components/PlanForm';
-import { userUrl } from '../constants/api';
+import PlanForm from '../components/PlanForm';
+import { postPlan, userUrl } from '../constants/api';
 // import AddedActivitiyCard from '../components/AddedActivitiyCard';
 import axios from 'axios';
 import PlanCard from '../components/PlanCard';
 import { TripContext } from '../context/Context';
+import { NewPlan } from '../App';
 
 export interface SavedPlan {
   id: number;
@@ -52,12 +52,12 @@ const Plan = () => {
   //   setPlans(plans || []);
   // };
 
-  // const savePlan = async (plan: NewPlan) => {
-  //   const saveAPlan = await postPlan(plan);
-  //   if (saveAPlan) {
-  //     setPlans([...plans, saveAPlan]);
-  //   }
-  // };
+  const savePlan = async (plan: NewPlan) => {
+    const saveAPlan = await postPlan(plan);
+    if (saveAPlan) {
+      setPlans([...plans, saveAPlan]);
+    }
+  };
 
   // const saveUpdatedPlan = async (id: number, plan: NewPlan) => {
   //   const updateAPlan = await updatePlan(id, plan);
@@ -70,18 +70,11 @@ const Plan = () => {
   //   setPlans(updatedPlans);
   // };
 
-  // const deletePlan = async (id: number) => {
-  //   await deletePlanById(id);
-  //   const filterPlans = plans.filter(plan => plan.id !== id);
-  //   setPlans(filterPlans);
-  //   localStorage.removeItem('planId');
-  // };
-
   // useEffect(() => {
   //   getPlanFromApi();
   // }, []);
 
-  const { onOpen } = useDisclosure();
+  const { onOpen, onClose, isOpen } = useDisclosure();
 
   // const handleDelete = (id: number) => {
   //   console.log(id);
@@ -158,7 +151,7 @@ const Plan = () => {
               </Flex>
             ))}
       </Flex> */}
-      {/* <PlanForm savePlan={savePlan} saveUpdatedPlan={saveUpdatedPlan} isOpen={isOpen} onClose={onClose} plan={selectedPlan} /> */}
+      <PlanForm savePlan={savePlan} isOpen={isOpen} onClose={onClose} />
     </Flex>
   );
 };
