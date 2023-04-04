@@ -44,12 +44,17 @@ const Navbar = () => {
           <Link className={location === '/' ? 'active' : 'nav-link'} to="/">
             Home
           </Link>
-          <Link className={location === '/travelplanner' ? 'active' : 'nav-link'} to="/travelplanner">
-            Travel Planner
-          </Link>
-          <Link className={location === '/co2calculator' ? 'active' : 'nav-link'} to="/co2calculator">
-            CO2 Calculator
-          </Link>
+          {loggedIn && (
+            <Link className={location === '/travelplanner' ? 'active' : 'nav-link'} to="/travelplanner">
+              Travel Planner
+            </Link>
+          )}
+
+          {loggedIn && (
+            <Link className={location === '/co2calculator' ? 'active' : 'nav-link'} to="/co2calculator">
+              CO2 Calculator
+            </Link>
+          )}
           <Link className={location === '/about' ? 'active' : 'nav-link'} to="/about">
             About
           </Link>
@@ -99,12 +104,16 @@ const Navbar = () => {
             <Link className={location === '/' ? 'active' : 'nav-link'} to="/" onClick={onClose}>
               Home
             </Link>
-            <Link className={location === '/travelplanner' ? 'active' : 'nav-link'} to="/travelplanner" onClick={onClose}>
-              Travel Planner
-            </Link>
-            <Link className={location === '/co2calculator' ? 'active' : 'nav-link'} to="/co2calculator" onClick={onClose}>
-              CO2 Calculator
-            </Link>
+            {loggedIn && (
+              <Link className={location === '/travelplanner' ? 'active' : 'nav-link'} to="/travelplanner" onClick={onClose}>
+                Travel Planner
+              </Link>
+            )}
+            {loggedIn && (
+              <Link className={location === '/co2calculator' ? 'active' : 'nav-link'} to="/co2calculator" onClick={onClose}>
+                CO2 Calculator
+              </Link>
+            )}
             <Link className={location === '/about' ? 'active' : 'nav-link'} to="/about" onClick={onClose}>
               About
             </Link>

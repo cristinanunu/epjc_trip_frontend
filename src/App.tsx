@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Plan from './pages/Plan';
 import PlanDetails from './pages/PlanDetails';
+import { Text } from '@chakra-ui/react';
 
 export interface NewPlan {
   name: string;
@@ -55,11 +56,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/co2calculator" element={<TravelForm />} />
-        <Route path="/travelplanner" element={<Plan />} />
-        <Route path="/travelplanner/:id" element={<PlanDetails />} />
+        <Route path="/co2calculator" element={loggedIn ? <TravelForm /> : <Text pt={40}>There's nothing here: 404!</Text>} />
+        <Route path="/travelplanner" element={loggedIn ? <Plan /> : <Text pt={40}>There's nothing here: 404!</Text>} />
+        <Route path="/travelplanner/:id" element={loggedIn ? <PlanDetails /> : <Text pt={40}>There's nothing here: 404!</Text>} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
+        <Route />
       </Routes>
     </TripContext.Provider>
   );
