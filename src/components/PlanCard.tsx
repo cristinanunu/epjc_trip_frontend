@@ -21,20 +21,20 @@ const PlanCard = ({ plan }: any) => {
     <Card w={'full'} p={5}>
       <CardBody>
         <Heading mb={4}>{plan.name}</Heading>
-        <Text mb={4}>Destination: {plan.destination}</Text>
-        <Flex alignItems={'center'}>
-          <Button
-            onClick={() => {
-              deletePlan(plan.id);
-              return;
-            }}
-            colorScheme="red"
-            mr={6}
-          >
-            Delete plan
-          </Button>
-          <Link to={`/travelplanner/${plan.id}`}>Go to plan</Link>
-        </Flex>
+          <Text mb={4}>Destination: {plan.destination}</Text>
+          <Flex alignItems={'center'}>
+            <Button
+              onClick={() => {
+                deletePlan(plan.id);
+                return;
+              }}
+              colorScheme="red"
+              mr={6}
+            >
+              Delete plan
+            </Button>
+            <Link to={`/travelplanner/${plan.id}`}>Go to plan</Link>
+          </Flex>
       </CardBody>
     </Card>
   );
