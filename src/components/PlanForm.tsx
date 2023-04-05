@@ -12,22 +12,10 @@ import {
   Input,
   NumberInput,
   NumberInputField,
-} from '@chakra-ui/react';
-// import moment from 'moment';
-import { useState } from 'react';
-import { NewPlan } from '../App';
-// import { SavedPlan } from '../pages/Plan';
-
-const defaultState = {
-  name: '',
-  departure: '',
-  destination: '',
-  startDate: '',
-  endDate: '',
-  participants: 0,
-  budget: 0,
-  userId: 0,
-};
+  Text,
+} from "@chakra-ui/react";
+import { NewPlan } from "../App";
+import { useForm } from "react-hook-form";
 
 interface PlanFormProps {
   savePlan: (plan: NewPlan) => void;
@@ -36,38 +24,38 @@ interface PlanFormProps {
 }
 
 const PlanForm = ({ savePlan, isOpen, onClose }: PlanFormProps) => {
-  const [myPlan, setMyPlan] = useState(defaultState);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
-  const { name, departure, destination, startDate, endDate, participants, budget } = myPlan;
-
-  // Use effect tracks the plan variable
-  // useEffect(() => {
-    // If the plan exists (is NOT udefined or null)
-    // the set state will be called to update the form
-    // if (plan) {
-      // with this syntax you extract from plan the keys id and activities and keep all the
-      // remaining keys / data in the variable planData
-  //     const { id, activities, ...planData } = plan;
-
-  //     planData.startDate = moment(plan.startDate).format('YYYY-MM-DD');
-  //     planData.endDate = moment(plan.endDate).format('YYYY-MM-DD');
-  //     setMyPlan(planData);
-  //   }
-  // }, [plan]);
-
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (data: any, e: any) => {
     e.preventDefault();
-    const userId = localStorage.getItem('userId');
+
+    const userId = localStorage.getItem("userId");
+
+    const planRequest = {
+      name: data.name,
+      departure: data.departure,
+      destination: data.destination,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      participants: data.participants,
+      budget: data.budget,
+      userId: 0,
+    };
+
+    console.log("this is the" + planRequest);
 
     if (userId !== null) {
       const parsedUserId = parseInt(userId);
-      // if (plan) {
-      //   saveUpdatedPlan(plan.id, myPlan);
-      // } else {
-        myPlan.userId = parsedUserId;
-        savePlan(myPlan);
-        setMyPlan(defaultState);
-      // }
+      planRequest.userId = parsedUserId;
+      savePlan(planRequest);
+      reset();
+
+      onClose();
     }
   };
 
@@ -79,52 +67,116 @@ const PlanForm = ({ savePlan, isOpen, onClose }: PlanFormProps) => {
           <DrawerCloseButton />
           <DrawerHeader borderBottomWidth="1px">Create a plan</DrawerHeader>
           <DrawerBody pt={20}>
-            <form onSubmit={handleFormSubmit} id="my-form">
+            <form onSubmit={handleSubmit(handleFormSubmit)} id="my-form">
               <Box>
                 <FormLabel>Plan name</FormLabel>
-                <Input value={name} onChange={e => setMyPlan({ ...myPlan, name: e.target.value })} placeholder="Plan name" />
+                <Input
+                  defaultValue=""
+                  {...register("name", { required: true })}
+                  placeholder="Plan name"
+                />
+                {errors.name && (
+                  <Text mb={5} color={"red.400"}>
+                    This field is required
+                  </Text>
+                )}
               </Box>
               <Box>
                 <FormLabel>Departure</FormLabel>
-                <Input value={departure} onChange={e => setMyPlan({ ...myPlan, departure: e.target.value })} placeholder="city of departure" />
+
+                <Input
+                  defaultValue=""
+                  {...register("departure", { required: true })}
+                  placeholder="city of departure"
+                />
+                {errors.departure && (
+                  <Text mb={5} color={"red.400"}>
+                    This field is required
+                  </Text>
+                )}
               </Box>
               <Box>
                 <FormLabel>Destination</FormLabel>
-                <Input value={destination} onChange={e => setMyPlan({ ...myPlan, destination: e.target.value })} placeholder="destination" />
+                <Input
+                  defaultValue=""
+                  {...register("destination", { required: true })}
+                  placeholder="destination"
+                />
+                {errors.destination && (
+                  <Text mb={5} color={"red.400"}>
+                    This field is required
+                  </Text>
+                )}
               </Box>
               <Box>
                 <FormLabel>Start Date</FormLabel>
-                <Input value={startDate} onChange={e => setMyPlan({ ...myPlan, startDate: e.target.value })} type="date" />
+                <Input
+                  defaultValue=""
+                  {...register("startDate", { required: true })}
+                  type="date"
+                />
+                {errors.startDate && (
+                  <Text mb={5} color={"red.400"}>
+                    This field is required
+                  </Text>
+                )}
               </Box>
+
               <Box>
                 <FormLabel>End Date</FormLabel>
-                <Input value={endDate} onChange={e => setMyPlan({ ...myPlan, endDate: e.target.value })} type="date" />
+                <Input
+                  defaultValue=""
+                  {...register("endDate", { required: true })}
+                  type="date"
+                />
+                {errors.endDate && (
+                  <Text mb={5} color={"red.400"}>
+                    This field is required
+                  </Text>
+                )}
               </Box>
               <Box>
                 <FormLabel>Number of participants</FormLabel>
                 <NumberInput min={1}>
-                  <NumberInputField value={participants} onChange={e => setMyPlan({ ...myPlan, participants: +e.target.value })} />
+                  <NumberInputField
+                    defaultValue=""
+                    {...register("participants", { required: true })}
+                  />
+                  {errors.participants && (
+                    <Text mb={5} color={"red.400"}>
+                      This field is required
+                    </Text>
+                  )}
                 </NumberInput>
               </Box>
               <Box>
                 <FormLabel>Planned budget</FormLabel>
-                <Input value={budget} onChange={e => setMyPlan({ ...myPlan, budget: +e.target.value })} placeholder="€ " />
+                <Input
+                  defaultValue=""
+                  {...register("budget", { required: true })}
+                  placeholder="€ "
+                />
+                {errors.budget && (
+                  <Text mb={5} color={"red.400"}>
+                    This field is required
+                  </Text>
+                )}
               </Box>
             </form>
           </DrawerBody>
           <DrawerFooter borderTopWidth="1px">
             <Button
-              _hover={{ bg: 'white', color: 'red.500' }}
-              background={'red.500'}
-              border={'1px'}
-              color={'white'}
-              borderColor={'red.500'}
+              _hover={{ bg: "white", color: "red.500" }}
+              background={"red.500"}
+              border={"1px"}
+              color={"white"}
+              borderColor={"red.500"}
               onClick={onClose}
               mr={3}
             >
               Cancel
             </Button>
-            <Button colorScheme="blue" onClick={onClose} type="submit" form="my-form">
+            <Button colorScheme="blue" type="submit" form="my-form">
               Save plan
             </Button>
           </DrawerFooter>
