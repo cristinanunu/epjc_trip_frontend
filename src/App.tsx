@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import TravelForm from './components/TravelForm';
+import TravelForm, { MyTripCO2 } from './components/TravelForm';
 import { TripContext } from './context/Context';
 import About from './pages/About';
 import Home from './pages/Home';
@@ -19,6 +19,7 @@ export interface NewPlan {
   participants: number;
   budget: number;
   userId: number;
+  co2Emissions?: MyTripCO2;
 }
 
 function App() {
