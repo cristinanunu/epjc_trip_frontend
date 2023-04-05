@@ -1,4 +1,4 @@
-import { Card, CardBody, Text, Box, Stack, Heading, CardFooter, ButtonGroup, Link, Flex, IconButton } from '@chakra-ui/react';
+import { Card,  Text, Box, Stack, Heading,  ButtonGroup, Link, Flex, IconButton, Grid, GridItem } from '@chakra-ui/react';
 import axios from 'axios';
 import { RatingStarContainer, RatingStar } from 'rating-star';
 import { activityUrl } from '../constants/api';
@@ -21,9 +21,10 @@ const AddedActivitiyCard = ({ activity }: any) => {
   };
 
   return (
-    <Card color={'gray.700'} borderRadius={10} mb={6} shadow={'md'}>
-      <CardBody>
-        <Stack>
+    <Card color={'gray.700'} borderRadius={10} mb={6} shadow={'md'} h={'fit-content'}>
+    <Grid templateColumns="repeat(4, 1fr)" gap={3}>
+      <GridItem colSpan={2}  p={4}>
+
           <Box
             borderRadius={10}
             h={'300px'}
@@ -33,8 +34,43 @@ const AddedActivitiyCard = ({ activity }: any) => {
             backgroundSize={'cover'}
             backgroundRepeat={'no-repeat'}
           ></Box>
-          <Heading size="md">{activity.name}</Heading>
-          <Text>{activity.description}</Text>
+      </GridItem>
+      <GridItem colSpan={2}  p={4}>
+      <Stack spacing={5}>
+      <Heading size="md" my={4}>{activity.name}</Heading>
+          <Flex alignItems={'center'}>
+            <Text mt={'3px'}>Rating: {activity.rating}</Text>
+            <RatingStarContainer>
+              <RatingStar noBorder id={activity.location_id} rating={activity.rating} />
+            </RatingStarContainer>
+          </Flex>
+          <Text fontWeight={'bold'}>{activity.ranking}</Text>
+          <Text>Number of reviews: {activity.reviewsNumber}</Text>
+          <Text>Address: {activity.street}</Text>
+        </Stack>
+      </GridItem>
+      <GridItem colSpan={4}  p={4}>
+      <Text>{activity.description}</Text>
+      </GridItem>
+      <GridItem colSpan={4}  p={4}>
+      <ButtonGroup display="flex" alignItems="center" spacing="5">
+          <IconButton
+            aria-label="remove activity"
+            onClick={() => {
+              removeActivity(activity.id);
+              return;
+            }}
+            icon={<DeleteIcon />}
+          />
+
+          <Link href={activity.link} isExternal>
+            View on tripadvisor
+          </Link>
+        </ButtonGroup>
+      </GridItem>
+      </Grid>
+      {/* <CardBody>
+        <Stack>
           <Flex alignItems={'center'}>
             <Text mt={'3px'}>Rating: {activity.rating}</Text>
             <RatingStarContainer>
@@ -61,7 +97,7 @@ const AddedActivitiyCard = ({ activity }: any) => {
             View on tripadvisor
           </Link>
         </ButtonGroup>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 };

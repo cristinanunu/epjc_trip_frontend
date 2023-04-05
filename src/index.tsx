@@ -15,12 +15,21 @@ const colors = {
   },
 };
 
-const fonts = {
-  body: 'sans-serif',
-  heading: 'sans-serif',
-};
 
-const theme = extendTheme({ colors, fonts });
+
+const fonts = {
+  body: 'Inter',
+  heading: 'Inter'
+};
+const breakpoints = {
+  sm: '320px',
+  md: '768px',
+  lg: '960px',
+  xl: '1200px',
+  '2xl': '1536px',
+}
+
+const theme = extendTheme({ colors, fonts, breakpoints });
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
