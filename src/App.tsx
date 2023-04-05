@@ -16,7 +16,7 @@ export interface NewPlan {
   startDate: string;
   endDate: string;
   participants: number;
-  cost: number;
+  budget: number;
   userId: number;
 }
 

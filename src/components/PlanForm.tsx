@@ -25,14 +25,12 @@ const defaultState = {
   startDate: '',
   endDate: '',
   participants: 0,
-  cost: 0,
+  budget: 0,
   userId: 0,
 };
 
 interface PlanFormProps {
-  // plan?: SavedPlan;
   savePlan: (plan: NewPlan) => void;
-  // saveUpdatedPlan: (id: number, plan: NewPlan) => void;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -40,7 +38,7 @@ interface PlanFormProps {
 const PlanForm = ({ savePlan, isOpen, onClose }: PlanFormProps) => {
   const [myPlan, setMyPlan] = useState(defaultState);
 
-  const { name, departure, destination, startDate, endDate, participants, cost } = myPlan;
+  const { name, departure, destination, startDate, endDate, participants, budget } = myPlan;
 
   // Use effect tracks the plan variable
   // useEffect(() => {
@@ -79,7 +77,7 @@ const PlanForm = ({ savePlan, isOpen, onClose }: PlanFormProps) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth="1px">Your plan</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">Create a plan</DrawerHeader>
           <DrawerBody pt={20}>
             <form onSubmit={handleFormSubmit} id="my-form">
               <Box>
@@ -110,7 +108,7 @@ const PlanForm = ({ savePlan, isOpen, onClose }: PlanFormProps) => {
               </Box>
               <Box>
                 <FormLabel>Planned budget</FormLabel>
-                <Input value={cost} onChange={e => setMyPlan({ ...myPlan, cost: +e.target.value })} placeholder="€ " />
+                <Input value={budget} onChange={e => setMyPlan({ ...myPlan, budget: +e.target.value })} placeholder="€ " />
               </Box>
             </form>
           </DrawerBody>
