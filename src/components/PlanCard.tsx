@@ -19,7 +19,7 @@ const PlanCard = ({ plan }: any) => {
   };
 
   return (
-    <Card w={'full'} p={5}>
+    <Card w={'full'} p={5} m={2}>
       <CardBody>
         <Heading mb={4}>{plan.name}</Heading>
         <Text mb={4}>Destination: {plan.destination}</Text>
