@@ -134,8 +134,7 @@ const TravelForm = () => {
   
 
   return (
-    // <Flex pt={40} direction={'column'} maxW={'3xl'} mx={{ sm: 5, md: 'auto' }}>
-    <Container pt={40}>
+    <Container pt={28}>
       <Heading color={'gray.700'} py={4}>Calculate carbon footprint</Heading>
       <Divider/>
 

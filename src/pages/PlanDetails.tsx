@@ -33,7 +33,7 @@ const PlanDetails = () => {
   const { onOpen, onClose, isOpen } = useDisclosure();
 
   return (
-    <Flex direction={'column'} w={'3xl'} pt={40} mx={'auto'} justifyContent={'center'}>
+    <Flex direction={'column'} w={'3xl'} pt={28} mx={'auto'} justifyContent={'center'}>
       <Link to="/travelplanner">
         <Flex alignItems={'center'}>
           <ArrowBackIcon mr={2} />
@@ -56,8 +56,6 @@ const PlanDetails = () => {
         <Text mb={4}>Participants: {plan.participants}</Text>
         <Text mb={4}>Budget: €{plan.budget}</Text>
       </Flex>
-
-      <Flex mb={6}>CARBON FOOTPRINT CHART</Flex>
 
       <Heading fontSize={'3xl'} mb={6}>
         Activities
