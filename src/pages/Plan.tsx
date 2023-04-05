@@ -54,11 +54,6 @@ const Plan = () => {
 
   const { onOpen, onClose, isOpen } = useDisclosure();
 
-  // const handleOnClick = (plan: SavedPlan) => {
-  //   setSelectedPlan(plan);
-  //   onOpen();
-  // };
-
   return (
     <Flex pt={40} direction={'column'} maxW={'3xl'} mx={{ sm: 5, md: 'auto' }}>
       <Flex alignItems={'center'} justifyContent={'space-between'}>
@@ -73,7 +68,7 @@ const Plan = () => {
       <Divider mb={4} />
 
       <Flex>
-        {plans.filter((planByUser: any) => planByUser.userId === userId).map((plan: any) => (
+        {plans.map((plan: any) => (
           <PlanCard plan={plan} />
         ))}
       </Flex>
