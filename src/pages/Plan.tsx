@@ -72,7 +72,7 @@ const Plan = () => {
 
       <Divider mb={4} />
 
-      <Flex>
+      <Flex direction={'column'}>
         {plans.filter((planByUser: any) => planByUser.userId === userId).map((plan: any) => (
           <PlanCard plan={plan} />
         ))}

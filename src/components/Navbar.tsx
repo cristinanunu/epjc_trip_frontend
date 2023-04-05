@@ -30,11 +30,11 @@ const Navbar = () => {
 
   return (
     <header>
-      <Flex p={4} alignItems="center" shadow={'md'} justifyContent={'space-between'} w={'100%'}>
+      <Flex p={4} alignItems="center" shadow={'md'} justifyContent={'space-between'} w={'100%'} >
         <Link to={'/'}>
           <Flex alignItems={'center'}>
-            <Heading mr={4} color={'gray.700'}>
-              Epjc Trip
+            <Heading fontSize='3xl' mr={4} color={'gray.700'}>
+              EPjC TRIP
             </Heading>
             <SiYourtraveldottv className="logo" />
           </Flex>
@@ -42,30 +42,34 @@ const Navbar = () => {
 
         <Flex display={{ base: 'none', md: 'flex' }} justifyContent="center" alignItems="center" color="white" fontSize={'2xl'} fontWeight={'bold'}>
           <Link className={location === '/' ? 'active' : 'nav-link'} to="/">
-            Home
+            <Text fontSize={'xl'}>Home</Text>
           </Link>
           {loggedIn && (
             <Link className={location === '/travelplanner' ? 'active' : 'nav-link'} to="/travelplanner">
-              Travel Planner
+              <Text fontSize={'xl'}>Travel Planner</Text>
+              
             </Link>
           )}
 
           {loggedIn && (
             <Link className={location === '/co2calculator' ? 'active' : 'nav-link'} to="/co2calculator">
-              CO2 Calculator
+             <Text fontSize={'xl'}>CO2 Calculator</Text>
+              
             </Link>
           )}
           <Link className={location === '/about' ? 'active' : 'nav-link'} to="/about">
-            About
+          <Text fontSize={'xl'}>About</Text>
+              
           </Link>
 
           {loggedIn ? (
-            <Text fontWeight={'normal'} color={'black'}>
+            <Text fontSize={'xl'} fontWeight={'normal'} color={'black'}>
               Logged in as {localStorage.getItem('name')}
             </Text>
           ) : (
             <Link className="nav-link" to="/login">
-              Login/Sign up
+                 <Text fontSize={'xl'}>Login/Sign up</Text>
+              
             </Link>
           )}
 

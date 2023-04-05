@@ -1,5 +1,5 @@
 import { useState, FormEvent } from "react";
-import { FormLabel, Input, Select, Button, Container, NumberInput, NumberInputField, Flex, Box, Heading } from "@chakra-ui/react";
+import { FormLabel, Input, Select, Button, Container, NumberInput, NumberInputField, Flex, Box, Heading, Divider } from "@chakra-ui/react";
 import axios from "axios";
 import { PieChart } from "./PieChart";
 
@@ -131,20 +131,24 @@ const TravelForm = () => {
       console.error(error);
     }
   };
+  
 
   return (
-    <Container pt={28}>
-      <Heading color={'gray.700'}>Calculate carbon footprint</Heading>
+    // <Flex pt={40} direction={'column'} maxW={'3xl'} mx={{ sm: 5, md: 'auto' }}>
+    <Container pt={40}>
+      <Heading color={'gray.700'} py={4}>Calculate carbon footprint</Heading>
+      <Divider/>
+
       <form onSubmit={handleSubmit}>
 
-        <FormLabel>From</FormLabel>
+        <FormLabel mt={5}>From</FormLabel>
         <Input
           type="text"
           name="from"
           value={formData.from}
           onChange={event => setFormData({ ...formData, from: event.target.value })}
         />
-        <FormLabel>Transport type</FormLabel>
+        <FormLabel mt={5}>Transport type</FormLabel>
         <Select
           name="transportType"
           value={formData.transportType}
@@ -157,7 +161,7 @@ const TravelForm = () => {
         </Select>
         <Flex justifyContent={'space-between'}>
           <Box>
-            <FormLabel>Ways</FormLabel>
+            <FormLabel mt={5}>Ways</FormLabel>
             <Select
               name="ways"
               value={formData.ways}
@@ -168,7 +172,7 @@ const TravelForm = () => {
             </Select>
           </Box>
           <Box>
-            <FormLabel>Number of people</FormLabel>
+            <FormLabel mt={5}>Number of people</FormLabel>
             <NumberInput min={1}>
               <NumberInputField name="people"
                 value={formData.people}
@@ -176,7 +180,7 @@ const TravelForm = () => {
             </NumberInput>
           </Box>
         </Flex>
-        <FormLabel>What type of vehicle?</FormLabel>
+        <FormLabel mt={5}>What type of vehicle?</FormLabel>
         <Select
           name="vehicleType"
           value={formData.vehicleType}
@@ -192,7 +196,7 @@ const TravelForm = () => {
         {formData.transportType !== 'flying'
           &&
           <>
-            <FormLabel>Fuel type of the vehicle</FormLabel>
+            <FormLabel mt={5}>Fuel type of the vehicle</FormLabel>
             <Select
               name="fuelType"
               value={formData.fuelType}
@@ -205,14 +209,14 @@ const TravelForm = () => {
             </Select>
           </>
         }
-        <FormLabel>To</FormLabel>
+        <FormLabel mt={5}>To</FormLabel>
         <Input
           type="text"
           name="to"
           value={formData.to}
           onChange={event => setFormData({ ...formData, to: event.target.value })}
         />
-        <FormLabel>Type of accomodation</FormLabel>
+        <FormLabel mt={5}>Type of accomodation</FormLabel>
         <Select
           name="accomodationType"
           value={formData.accomodationType}
@@ -226,7 +230,7 @@ const TravelForm = () => {
         </Select>
         <Flex justifyContent={'space-between'}>
           <Box>
-            <FormLabel>Number of nights</FormLabel>
+            <FormLabel mt={5}>Number of nights</FormLabel>
             <NumberInput min={1}>
               <NumberInputField name="accomodationNights"
                 value={formData.accomodationNights}
@@ -234,7 +238,7 @@ const TravelForm = () => {
             </NumberInput>
           </Box>
           <Box>
-            <FormLabel>Number of people</FormLabel>
+            <FormLabel mt={5}>Number of people</FormLabel>
             <NumberInput min={1}>
               <NumberInputField name="accommodationPeople"
                 value={formData.accommodationPeople}
