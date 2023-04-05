@@ -99,7 +99,7 @@ const Plan = () => {
 
       <Divider mb={4} />
 
-      <Flex>
+      <Flex direction={'column'}>
         {plans.map((plan: any) => (
           <PlanCard plan={plan} />
         ))}

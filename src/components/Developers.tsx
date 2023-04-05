@@ -9,6 +9,7 @@ import DevJoakimCard from "./DevJoakimCard";
 const Developers = () => {
   return (
     <Flex
+      direction={'row'}
       p={4}
       alignItems="center"
       gap={3}
