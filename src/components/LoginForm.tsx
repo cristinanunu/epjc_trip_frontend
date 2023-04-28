@@ -8,66 +8,73 @@ import { TripContext } from '../context/Context';
 
 
 const LoginForm = () => {
- const { setLoggedIn }: any = useContext(TripContext);
+  const { setLoggedIn, loading, setLoading }: any = useContext(TripContext);
 
 
- const {
-   register,
-   handleSubmit,
-   reset,
-   formState: { errors },
- } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
 
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
- const login = async (data: any, e: any) => {
-   e.preventDefault();
+  const login = async (data: any, e: any) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const loginRequest = {
+      email: data.email,
+      password: data.password,
+    };
 
 
-   const loginRequest = {
-     email: data.email,
-     password: data.password,
-   };
+    try {
+      const response = await axios.post(loginUrl, loginRequest);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('name', response.data.name);
+      localStorage.setItem('email', response.data.email);
+      localStorage.setItem('userId', response.data.id);
 
 
-   try {
-     const response = await axios.post(loginUrl, loginRequest);
-     localStorage.setItem('token', response.data.token);
-     localStorage.setItem('name', response.data.name);
-     localStorage.setItem('email', response.data.email);
-     localStorage.setItem('userId', response.data.id);
+      setLoggedIn(true);
+      navigate('/travelplanner');
+      setLoading(false);
+      reset();
+    } catch (error) {
+      console.log(errors);
+      setLoading(false);
+    }
+  };
 
 
-     setLoggedIn(true);
-     navigate('/travelplanner');
-     reset();
-   } catch (error) {
-     console.log(errors);
-   }
- };
+  return (
+    <form onSubmit={handleSubmit(login)}>
+    <Flex direction={'column'} maxW="md" m={{ sm: 5, md: 'auto' }}>
+    <Heading color={'gray.700'} mb={5} fontSize="lg">
+    Log in
+    </Heading>
 
 
- return (
-   <form onSubmit={handleSubmit(login)}>
-     <Flex direction={'column'} maxW="md" m={{ sm: 5, md: 'auto' }}>
-       <Heading color={'gray.700'} mb={5} fontSize="lg">
-         Log in
-       </Heading>
+    <Input defaultValue="" {...register('email', { required: true })} variant="flushed" type="email" placeholder="Email..." mb={5}/>
+    {errors.email && <Text mb={5} color={'red.400'}>This field is required</Text>}
+    <Input my={5} defaultValue="" {...register('password', { required: true })} variant="flushed" type="password" placeholder="Password..."mb={5} />
+    {errors.password && <Text mb={5} color={'red.400'}>This field is required</Text>}
+    <Button colorScheme="blue" type="submit">
+    Log in
+    </Button>
+    {loading && (
+      <div className="col-sm-2">
+      <div className="sp sp-3balls"></div>
+      </div>
+      )}
+      </Flex>
+      </form>
+      );
+    };
 
 
-       <Input defaultValue="" {...register('email', { required: true })} variant="flushed" type="email" placeholder="Email..." mb={5}/>
-       {errors.email && <Text mb={5} color={'red.400'}>This field is required</Text>}
-       <Input my={5} defaultValue="" {...register('password', { required: true })} variant="flushed" type="password" placeholder="Password..."mb={5} />
-       {errors.password && <Text mb={5} color={'red.400'}>This field is required</Text>}
-       <Button colorScheme="blue" type="submit">
-         Log in
-       </Button>
-     </Flex>
-   </form>
- );
-};
-
-
-export default LoginForm;
+    export default LoginForm;
