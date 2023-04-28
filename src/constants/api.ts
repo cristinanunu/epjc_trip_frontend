@@ -7,14 +7,14 @@ export const travelAdvisorSearchUrl = 'https://travel-advisor.p.rapidapi.com/loc
 export const traveAdvisorAttractionsUrl = 'https://travel-advisor.p.rapidapi.com/attractions/list';
 export const apiKey = '4887eda678mshdc0804b3f912ba8p11db58jsn1475c5f5dc16';
 export const apiHost = 'travel-advisor.p.rapidapi.com';
-export const loginUrl = 'https://epjctripapi.azurewebsites.net/login';
-export const registerUrl = 'https://epjctripapi.azurewebsites.net/register';
-export const userUrl = 'https://epjctripapi.azurewebsites.net/api/Users';
-export const planUrl = 'https://epjctripapi.azurewebsites.net/api/Plans';
-export const activityUrl = 'https://epjctripapi.azurewebsites.net/api/Activities';
+export const loginUrl = 'https://epjc-trip.azurewebsites.net/login';
+export const registerUrl = 'https://epjc-trip.azurewebsites.net/register';
+export const userUrl = 'https://epjc-trip.azurewebsites.net/api/Users';
+export const planUrl = 'https://epjc-trip.azurewebsites.net/api/Plans';
+export const activityUrl = 'https://epjc-trip.azurewebsites.net/api/Activities';
 
 const client = axios.create({
-  baseURL: 'https://epjctripapi.azurewebsites.net/api',
+  baseURL: 'https://epjc-trip.azurewebsites.net/api',
 });
 
 export async function getPlan(): Promise<SavedPlan[]> {

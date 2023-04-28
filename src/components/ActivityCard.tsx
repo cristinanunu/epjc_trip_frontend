@@ -61,7 +61,7 @@ const ActivityCard = ({ activity }: ActivityProp) => {
     };
 
     try {
-      await axios.post('https://epjctripapi.azurewebsites.net/api/Activities', newActivity);
+      await axios.post('https://epjc-trip.azurewebsites.net/api/Activities', newActivity);
       setSuccess(true);
     } catch (error) {
       console.log(error);

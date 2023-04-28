@@ -3,7 +3,7 @@ import { Box, Flex, Heading, IconButton, Input } from '@chakra-ui/react';
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { TripContext } from '../context/Context';
-import { apiHost, apiKey, traveAdvisorAttractionsUrl, travelAdvisorSearchUrl } from '../constants/api';
+import { apiHost, traveAdvisorAttractionsUrl, travelAdvisorSearchUrl } from '../constants/api';
 
 const FilterActivities = () => {
   const [inputValue, setInputValue] = useState('');
@@ -28,7 +28,7 @@ const FilterActivities = () => {
         lang: 'en_US',
       },
       headers: {
-        'X-RapidAPI-Key': apiKey,
+        'X-RapidAPI-Key': `${process.env.REACT_APP_ACCESS_KEY_TRAVEL_ADVISOR}`,
         'X-RapidAPI-Host': apiHost,
       },
     };
@@ -48,7 +48,7 @@ const FilterActivities = () => {
           sort: 'recommended',
         },
         headers: {
-          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Key': `${process.env.REACT_APP_ACCESS_KEY_TRAVEL_ADVISOR}`,
           'X-RapidAPI-Host': apiHost,
         },
       };

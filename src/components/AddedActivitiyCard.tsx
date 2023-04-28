@@ -9,8 +9,6 @@ import { DeleteIcon } from '@chakra-ui/icons';
 const AddedActivitiyCard = ({ activity }: any) => {
   const { setPlanActivities, planActivities }: any = useContext(TripContext);
 
-  console.log(activity);
-
   const removeActivity = async (id: number) => {
     try {
       await axios.delete(activityUrl + '/' + id);
@@ -69,35 +67,6 @@ const AddedActivitiyCard = ({ activity }: any) => {
         </ButtonGroup>
       </GridItem>
       </Grid>
-      {/* <CardBody>
-        <Stack>
-          <Flex alignItems={'center'}>
-            <Text mt={'3px'}>Rating: {activity.rating}</Text>
-            <RatingStarContainer>
-              <RatingStar noBorder id={activity.location_id} rating={activity.rating} />
-            </RatingStarContainer>
-          </Flex>
-          <Text fontWeight={'bold'}>{activity.ranking}</Text>
-          <Text>Number of reviews: {activity.reviewsNumber}</Text>
-          <Text>Address: {activity.street}</Text>
-        </Stack>
-      </CardBody>
-      <CardFooter>
-        <ButtonGroup display="flex" alignItems="center" spacing="5">
-          <IconButton
-            aria-label="remove activity"
-            onClick={() => {
-              removeActivity(activity.id);
-              return;
-            }}
-            icon={<DeleteIcon />}
-          />
-
-          <Link href={activity.link} isExternal>
-            View on tripadvisor
-          </Link>
-        </ButtonGroup>
-      </CardFooter> */}
     </Card>
   );
 };
